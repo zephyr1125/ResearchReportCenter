@@ -7,3 +7,4 @@ __pycache__/
 input/*.pdf
 output/site/
 output/logs/
+output/_tmp*/
