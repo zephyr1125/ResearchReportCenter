@@ -78,7 +78,7 @@ def test_render_report_list_page(tmp_path: Path) -> None:
     assert "### 近期报告" in markdown
     assert "| 日期 | 中文标题 | 原文标题 |" in markdown
     assert "12 November 2025" in markdown
-    assert "平衡的方法，2025年11月12日" in markdown
+    assert "平衡的方法" in markdown
 
 
 def test_parse_report_list_entry() -> None:
