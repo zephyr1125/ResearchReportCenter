@@ -11,7 +11,7 @@ from app.manifest import load_manifest, save_manifest
 from app.models import ImageBlock, ManifestRecord, TextBlock
 from app.pdf_processor import PdfProcessor
 from app.site_builder import render_index_markdown, render_report_markdown
-from app.translator import OpenAICompatibleTranslator
+from app.translator import OpenAICompatibleTranslator, TranslationError, Translator, VolcengineTranslator
 from app.utils import ensure_relative_posix, sha256_file, stable_slug
 
 
@@ -22,6 +22,7 @@ def build_parser() -> argparse.ArgumentParser:
     build = subparsers.add_parser("build-site", help="增量构建静态网站")
     build.add_argument("--force", action="store_true", help="忽略 manifest，强制全量重建")
     build.add_argument("--file", help="仅处理指定文件名，例如 report.pdf")
+    build.add_argument("--skip-translation", action="store_true", help="跳过真实翻译，先生成预览站点")
     return parser
 
 
@@ -34,7 +35,13 @@ def main() -> int:
     logger = configure_logger(settings.logs_dir / "build-site.log")
 
     if args.command == "build-site":
-        return run_build_site(settings, logger, force=args.force, file_name=args.file)
+        return run_build_site(
+            settings,
+            logger,
+            force=args.force,
+            file_name=args.file,
+            skip_translation=args.skip_translation,
+        )
 
     parser.error(f"未知命令：{args.command}")
     return 2
@@ -55,7 +62,13 @@ def configure_logger(log_path: Path) -> logging.Logger:
     return logger
 
 
-def run_build_site(settings: Settings, logger: logging.Logger, force: bool = False, file_name: str | None = None) -> int:
+def run_build_site(
+    settings: Settings,
+    logger: logging.Logger,
+    force: bool = False,
+    file_name: str | None = None,
+    skip_translation: bool = False,
+) -> int:
     manifest = load_manifest(settings.manifest_path)
     processor = PdfProcessor()
 
@@ -76,7 +89,7 @@ def run_build_site(settings: Settings, logger: logging.Logger, force: bool = Fal
     settings.assets_dir.mkdir(parents=True, exist_ok=True)
 
     changed = 0
-    translator = None
+    translator: Translator | None = None
     for pdf_path in pdf_files:
         source_key = ensure_relative_posix(pdf_path, settings.root_dir)
         sha256 = sha256_file(pdf_path)
@@ -93,19 +106,19 @@ def run_build_site(settings: Settings, logger: logging.Logger, force: bool = Fal
         asset_dir = settings.assets_dir / slug
 
         try:
-            if translator is None:
-                translator = OpenAICompatibleTranslator(
-                    api_key=settings.llm_api_key,
-                    base_url=settings.llm_base_url,
-                    model=settings.llm_model,
-                )
+            if translator is None and not skip_translation:
+                translator = build_translator(settings)
             if asset_dir.exists():
                 shutil.rmtree(asset_dir)
             document = processor.extract(pdf_path, asset_dir)
             for page in document.pages:
                 for item in page.items:
                     if isinstance(item, TextBlock):
-                        item.translated_text = translator.translate(item.text)
+                        item.translated_text = build_translated_text(
+                            item.text,
+                            translator,
+                            skip_translation=skip_translation,
+                        )
             markdown = render_report_markdown(document, settings.docs_dir)
             article_path.write_text(markdown, encoding="utf-8")
             manifest[source_key] = ManifestRecord(
@@ -137,6 +150,31 @@ def run_build_site(settings: Settings, logger: logging.Logger, force: bool = Fal
     write_failures(settings, manifest)
     save_manifest(settings.manifest_path, manifest)
     return 0
+
+
+def build_translated_text(text: str, translator: Translator | None, skip_translation: bool) -> str:
+    if skip_translation:
+        return f"[预览模式，未调用翻译接口]\n{text}"
+    if translator is None:
+        raise TranslationError("翻译器未初始化。")
+    return translator.translate(text)
+
+
+def build_translator(settings: Settings) -> Translator:
+    if settings.translator_provider == "openai":
+        return OpenAICompatibleTranslator(
+            api_key=settings.llm_api_key,
+            base_url=settings.llm_base_url,
+            model=settings.llm_model,
+        )
+    if settings.translator_provider == "volcengine":
+        return VolcengineTranslator(
+            access_key=settings.volcengine_access_key,
+            secret_key=settings.volcengine_secret_key,
+            target_language=settings.target_language,
+            region=settings.volcengine_region,
+        )
+    raise ValueError(f"不支持的翻译提供商：{settings.translator_provider}")
 
 
 def write_index(settings: Settings, manifest: dict[str, ManifestRecord]) -> None:

@@ -4,6 +4,8 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 
 @dataclass(frozen=True)
 class Settings:
@@ -15,12 +17,19 @@ class Settings:
     logs_dir: Path
     state_dir: Path
     manifest_path: Path
+    translator_provider: str
     llm_api_key: str
     llm_base_url: str
     llm_model: str
+    volcengine_access_key: str
+    volcengine_secret_key: str
+    volcengine_region: str
+    target_language: str
 
     @classmethod
     def load(cls, root_dir: Path) -> "Settings":
+        # 优先读取项目根目录下的 .env，系统环境变量继续作为兜底。
+        load_dotenv(root_dir / ".env", override=False)
         output_dir = root_dir / "output"
         docs_dir = output_dir / "site_src" / "docs"
         state_dir = output_dir / "state"
@@ -33,9 +42,14 @@ class Settings:
             logs_dir=output_dir / "logs",
             state_dir=state_dir,
             manifest_path=state_dir / "manifest.json",
+            translator_provider=os.getenv("TRANSLATOR_PROVIDER", "openai").strip().lower(),
             llm_api_key=os.getenv("LLM_API_KEY", "").strip(),
             llm_base_url=os.getenv("LLM_BASE_URL", "https://api.openai.com/v1").strip(),
             llm_model=os.getenv("LLM_MODEL", "gpt-4.1-mini").strip(),
+            volcengine_access_key=os.getenv("VOLCENGINE_ACCESS_KEY", "").strip(),
+            volcengine_secret_key=os.getenv("VOLCENGINE_SECRET_KEY", "").strip(),
+            volcengine_region=os.getenv("VOLCENGINE_REGION", "cn-north-1").strip(),
+            target_language=os.getenv("TARGET_LANGUAGE", "zh").strip(),
         )
 
     def ensure_directories(self) -> None:

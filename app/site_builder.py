@@ -4,7 +4,6 @@ from datetime import datetime
 from pathlib import Path
 
 from app.models import DocumentContent, ImageBlock, ManifestRecord, TextBlock
-from app.utils import ensure_relative_posix
 
 
 def render_report_markdown(document: DocumentContent, docs_dir: Path) -> str:
@@ -37,10 +36,10 @@ def render_report_markdown(document: DocumentContent, docs_dir: Path) -> str:
                     ]
                 )
             elif isinstance(item, ImageBlock):
-                relative_path = ensure_relative_posix(item.image_path, docs_dir)
+                relative_path = Path("..") / item.image_path.relative_to(docs_dir)
                 lines.extend(
                     [
-                        f"![{item.caption}]({relative_path})",
+                        f"![{item.caption}]({relative_path.as_posix()})",
                         "",
                         f"*{item.caption}*",
                         "",
