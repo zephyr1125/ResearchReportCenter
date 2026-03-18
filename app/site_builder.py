@@ -17,6 +17,9 @@ def render_report_markdown(document: DocumentContent, docs_dir: Path) -> str:
 
     for page in document.pages:
         lines.extend([f"## 第 {page.page_number} 页", ""])
+        if page.page_kind == "report_list":
+            lines.extend(render_report_list_page(page, docs_dir))
+            continue
         for item in page.items:
             if isinstance(item, TextBlock):
                 lines.extend(
@@ -40,6 +43,69 @@ def render_report_markdown(document: DocumentContent, docs_dir: Path) -> str:
                     ]
                 )
     return "\n".join(lines).strip() + "\n"
+
+
+def render_report_list_page(page, docs_dir: Path) -> list[str]:
+    lines: list[str] = []
+    entries: list[tuple[str, str, str]] = []
+    for item in page.items:
+        if isinstance(item, TextBlock):
+            text = item.text.strip()
+            translated = (item.translated_text or "").strip()
+            if "Links to recent reports in the China Macro Tracker series" in text:
+                lines.extend(["### 近期报告", ""])
+                continue
+            parsed = parse_report_list_entry(text)
+            if parsed:
+                english_title, date_text = parsed
+                entries.append((date_text, normalize_translated_report_title(translated or english_title), english_title))
+        elif isinstance(item, ImageBlock):
+            if entries:
+                lines.extend(["| 日期 | 中文标题 | 原文标题 |", "| --- | --- | --- |"])
+                for date_text, chinese_title, english_title in entries:
+                    lines.append(f"| {date_text} | {chinese_title} | {english_title} |")
+                lines.extend(["", "### 原页预览", ""])
+                entries.clear()
+            relative_path = Path("..") / item.image_path.relative_to(docs_dir)
+            lines.extend(
+                [
+                    f"![{item.caption}]({relative_path.as_posix()})",
+                    "",
+                    f"*{item.caption}*",
+                    "",
+                ]
+            )
+    if entries:
+        lines.extend(["| 日期 | 中文标题 | 原文标题 |", "| --- | --- | --- |"])
+        for date_text, chinese_title, english_title in entries:
+            lines.append(f"| {date_text} | {chinese_title} | {english_title} |")
+        lines.append("")
+    return lines
+
+
+def parse_report_list_entry(text: str) -> tuple[str, str] | None:
+    compact = " ".join(text.split())
+    import re
+
+    match = re.match(
+        r"^(?P<title>.+),\s+(?P<date>\d{1,2}\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4})$",
+        compact,
+        re.I,
+    )
+    if not match:
+        return None
+    return match.group("title").strip(), match.group("date").strip()
+
+
+def normalize_translated_report_title(text: str) -> str:
+    compact = " ".join(text.split()).strip().strip("，,")
+    import re
+
+    compact = re.sub(r"^\d{4}年\d{1,2}月\d{1,2}日[，,\s]*", "", compact)
+    compact = re.sub(r"^\d{1,2}月\d{1,2}日[，,\s]*", "", compact)
+    compact = re.sub(r"[，,]?\s*\d{4}年\d{1,2}月\d{1,2}日$", "", compact)
+    compact = re.sub(r"[，,]?\s*\d{1,2}月\d{1,2}日$", "", compact)
+    return compact.strip().strip("，,")
 
 
 def render_index_markdown(records: list[ManifestRecord]) -> str:

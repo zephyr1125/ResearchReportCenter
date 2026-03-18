@@ -58,6 +58,7 @@ class PdfProcessor:
                 item_order += 1
 
         page_content.items = self._filter_page_items(page_content.items)
+        page_content.page_kind = self._detect_page_kind(page_content.items)
         for index, item in enumerate(page_content.items):
             item.order = index
 
@@ -103,6 +104,29 @@ class PdfProcessor:
                 continue
             filtered.append(item)
         return filtered
+
+    @staticmethod
+    def _detect_page_kind(items: list[TextBlock | ImageBlock]) -> str:
+        text_blocks = [item for item in items if isinstance(item, TextBlock)]
+        if not text_blocks:
+            return "content"
+        texts = [block.text.strip() for block in text_blocks if block.text.strip()]
+        if any("Links to recent reports in the China Macro Tracker series" in text for text in texts):
+            dated_titles = sum(1 for text in texts if PdfProcessor._looks_like_report_list_entry(text))
+            if dated_titles >= 8:
+                return "report_list"
+        return "content"
+
+    @staticmethod
+    def _looks_like_report_list_entry(text: str) -> bool:
+        compact = " ".join(text.split())
+        return bool(
+            re.search(
+                r",\s+\d{1,2}\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}$",
+                compact,
+                re.I,
+            )
+        )
 
     @staticmethod
     def _is_chart_heavy_page(text_blocks: list[TextBlock]) -> bool:

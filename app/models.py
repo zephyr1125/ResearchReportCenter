@@ -24,6 +24,7 @@ class ImageBlock:
 class PageContent:
     page_number: int
     items: list[TextBlock | ImageBlock] = field(default_factory=list)
+    page_kind: str = "content"
 
 
 @dataclass

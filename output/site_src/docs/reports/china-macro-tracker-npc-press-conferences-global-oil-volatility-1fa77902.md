@@ -1,7 +1,7 @@
 # China Macro Tracker NPC press conferences, global oil volatility
 
 - 原始文件：`China Macro Tracker NPC press conferences, global oil volatility.pdf`
-- 生成时间：`2026-03-18T21:13:31`
+- 生成时间：`2026-03-18T21:19:09`
 
 ## 第 1 页
 
@@ -423,257 +423,49 @@ DR007（7天加权平均银行间债券
 
 ## 第 8 页
 
-Economics ● China
-
-经济学●中国
-
----
-
-11 March 2026
-
-2026年3月11日
-
----
-
-Links to recent reports in the China Macro Tracker series
-
-中国宏观跟踪系列近期报告链接
-
----
-
-China’s Two Sessions in a volatile world, 4 March 2026
-
-动荡世界中的中国两会，2026年3月4日
-
----
-
-US tariff changes, record breaking CNY holiday, 25 February 2026
-
-美国关税变化，创纪录的春节假期，2026年2月25日
-
----
-
-Boosting investment and innovation, 11 February 2026
-
-促进投资和创新，2026年2月11日
-
----
-
-Chinese New Year migration begins, China-UK reset, 4 February 2026
-
-中国新年移民开始，中英重置，2026年2月4日
-
----
-
-A more conservative approach to the GDP target, 28 January 2026
-
-更保守的GDP目标方法，2026年1月28日
-
----
-
-Domestic pressures may prompt more urgency, 21 January 2026
-
-2026年1月21日，国内压力可能会引发更多紧迫性
-
----
-
-Domestic demand needs an investment lift, 14 January 2026
-
-国内需求需要投资提振，2026年1月14日
-
----
-
-Starting the new year with policy support, 7 January 2026
-
-以政策支持开始新的一年，2026年1月7日
-
----
-
-Demand-led rebalancing, 17 December 2025
-
-需求导向的再平衡，2025年12月17日
-
----
-
-Politburo, Pandas and Provincial Five-Year Plans, 10 December 2025
-
-政治局、熊猫和省级五年计划，2025年12月10日
-
----
-
-Last policy meetings for the year approaching, 3 December 2025
-
-即将到来的一年的最后一次政策会议，2025年12月3日
-
----
-
-Phone a friend, 26 November 2025
-
-给朋友打电话，2025年11月26日
-
----
-
-Not yet at the finishing line, 19 November 2025
-
-还没有到达终点线，2025年11月19日
-
----
-
-A balanced approach, 12 November 2025
-
-平衡的方法，2025年11月12日
-
----
-
-A new tenuous equilibrium, 5 November 2025
-
-一个新的脆弱平衡，2025年11月5日
-
----
-
-Potential trade breakthroughs, 29 October 2025
-
-潜在的贸易突破，2025年10月29日
-
----
-
-Deal or no deal, 22 October 2025
-
-成交与否，2025年10月22日
-
----
-
-On pins and needles, 15 October 2025
-
-如坐针毡，2025年10月15日
-
----
-
-New measures before the Golden Week, 1 October 2025
-
-2025年10月1日黄金周前的新措施
-
----
-
-Talking points, 24 September 2025
-
-谈话要点，2025年9月24日
-
----
-
-US-China talks see progress in Madrid, 17 September 2025
-
-2025年9月17日，马德里，美中会谈取得进展
-
----
-
-Anti-involution to help longer-term development, 10 September 2025
-
-帮助长期发展的反内卷化，2025年9月10日
-
----
-
-Domestic reforms accelerating, 3 September 2025
-
-国内改革加速，2025年9月3日
-
----
-
-Green transition to help the anti-involution campaign, 27 August 2025
-
-帮助反内卷运动的绿色过渡，2025年8月27日
-
----
-
-More measures to support growth, 20 August 2025
-
-支持增长的更多措施，2025年8月20日
-
----
-
-Another 90-day tariff truce, 13 August 2025
-
-另一个90天关税休战，2025年8月13日
-
----
-
-A clear pro-growth tone, 6 August 2025
-
-明确的促增长基调，2025年8月6日
-
----
-
-Tailwinds from services subsidies, 29 July 2025
-
-服务补贴的顺风，2025年7月29日
-
----
-
-July Politburo may mean structural moves, 23 July 2025
-
-7月政治局可能意味着结构性举措，2025年7月23日
-
----
-
-China’s new urbanisation plan, 16 July 2025
-
-中国的新城镇化计划，2025年7月16日
-
----
-
-Supply-side reform 2.0? 9 July 2025
-
-供给侧改革2.0？2025年7月9日
-
----
-
-Signed and sealed, 2 July 2025
-
-签署并盖章，2025年7月2日
-
----
-
-Domestic consumption becoming brighter, 25 June 2025
-
-国内消费变得更加光明，2025年6月25日
-
----
-
-Working on domestic matters, 18 June
-
-处理国内事务，6月18日
-
----
-
-Increased support for people's livelihood, 11 June 2025
-
-增加对民生的支持，2025年6月11日
-
----
-
-Anyone’s call, 4 June 2025
-
-任何人的电话，2025年6月4日
-
----
-
-Broadening cooperation and boosting consumption, 28 May 2025
-
-扩大合作和促进消费，2025年5月28日
-
----
-
-Mixed signals during the tariff pause, 21 May 2025
-
-关税暂停期间的混合信号，2025年5月21日
-
----
-
-More than just reciprocal tariffs paused, 14 May 2025
-
-不仅仅是暂停互惠关税，2025年5月14日
-
----
+### 近期报告
+
+| 日期 | 中文标题 | 原文标题 |
+| --- | --- | --- |
+| 4 March 2026 | 动荡世界中的中国两会 | China’s Two Sessions in a volatile world |
+| 25 February 2026 | 美国关税变化，创纪录的春节假期 | US tariff changes, record breaking CNY holiday |
+| 11 February 2026 | 促进投资和创新 | Boosting investment and innovation |
+| 4 February 2026 | 中国新年移民开始，中英重置 | Chinese New Year migration begins, China-UK reset |
+| 28 January 2026 | 更保守的GDP目标方法 | A more conservative approach to the GDP target |
+| 21 January 2026 | 2026年1月21日，国内压力可能会引发更多紧迫性 | Domestic pressures may prompt more urgency |
+| 14 January 2026 | 国内需求需要投资提振 | Domestic demand needs an investment lift |
+| 7 January 2026 | 以政策支持开始新的一年 | Starting the new year with policy support |
+| 17 December 2025 | 需求导向的再平衡 | Demand-led rebalancing |
+| 10 December 2025 | 政治局、熊猫和省级五年计划 | Politburo, Pandas and Provincial Five-Year Plans |
+| 3 December 2025 | 即将到来的一年的最后一次政策会议 | Last policy meetings for the year approaching |
+| 26 November 2025 | 给朋友打电话 | Phone a friend |
+| 19 November 2025 | 还没有到达终点线 | Not yet at the finishing line |
+| 12 November 2025 | 平衡的方法 | A balanced approach |
+| 5 November 2025 | 一个新的脆弱平衡 | A new tenuous equilibrium |
+| 29 October 2025 | 潜在的贸易突破 | Potential trade breakthroughs |
+| 22 October 2025 | 成交与否 | Deal or no deal |
+| 15 October 2025 | 如坐针毡 | On pins and needles |
+| 1 October 2025 | 2025年10月1日黄金周前的新措施 | New measures before the Golden Week |
+| 24 September 2025 | 谈话要点 | Talking points |
+| 17 September 2025 | 2025年9月17日，马德里，美中会谈取得进展 | US-China talks see progress in Madrid |
+| 10 September 2025 | 帮助长期发展的反内卷化 | Anti-involution to help longer-term development |
+| 3 September 2025 | 国内改革加速 | Domestic reforms accelerating |
+| 27 August 2025 | 帮助反内卷运动的绿色过渡 | Green transition to help the anti-involution campaign |
+| 20 August 2025 | 支持增长的更多措施 | More measures to support growth |
+| 13 August 2025 | 另一个90天关税休战 | Another 90-day tariff truce |
+| 6 August 2025 | 明确的促增长基调 | A clear pro-growth tone |
+| 29 July 2025 | 服务补贴的顺风 | Tailwinds from services subsidies |
+| 23 July 2025 | 7月政治局可能意味着结构性举措 | July Politburo may mean structural moves |
+| 16 July 2025 | 中国的新城镇化计划 | China’s new urbanisation plan |
+| 2 July 2025 | 签署并盖章 | Signed and sealed |
+| 25 June 2025 | 国内消费变得更加光明 | Domestic consumption becoming brighter |
+| 11 June 2025 | 增加对民生的支持 | Increased support for people's livelihood |
+| 4 June 2025 | 任何人的电话 | Anyone’s call |
+| 28 May 2025 | 扩大合作和促进消费 | Broadening cooperation and boosting consumption |
+| 21 May 2025 | 关税暂停期间的混合信号 | Mixed signals during the tariff pause |
+| 14 May 2025 | 不仅仅是暂停互惠关税 | More than just reciprocal tariffs paused |
+
+### 原页预览
 
 ![第 8 页图表预览](../assets/china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902/page-8-preview.png)
 
