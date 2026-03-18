@@ -1,0 +1,11 @@
+site_name: Research Report Center
+site_description: 研报双语静态网站
+site_url: ""
+docs_dir: output/site_src/docs
+site_dir: output/site
+theme:
+  name: mkdocs
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
