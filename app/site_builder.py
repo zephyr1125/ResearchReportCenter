@@ -15,7 +15,7 @@ def render_report_markdown(document: DocumentContent, docs_dir: Path) -> str:
         "",
     ]
     if document.ai_summary.strip():
-        lines.extend(["## AI 总结", "", document.ai_summary.strip(), ""])
+        lines.extend(["## AI 总结", "", (document.highlighted_ai_summary or document.ai_summary).strip(), ""])
 
     for page in document.pages:
         lines.extend([f"## 第 {page.page_number} 页", ""])

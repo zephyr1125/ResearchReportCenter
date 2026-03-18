@@ -1,22 +1,23 @@
 # China Macro Tracker NPC press conferences, global oil volatility
 
 - 原始文件：`China Macro Tracker NPC press conferences, global oil volatility.pdf`
-- 生成时间：`2026-03-18T21:59:47`
+- 生成时间：`2026-03-18T22:06:19`
 
 ## AI 总结
 
 ### 核心结论
-1. 2026年两会明确稳增长政策取向，财政政策靠前发力，货币政策维持宽松，核心抓手为扩内需、培育新质生产力、稳就业，政策方向与政府工作报告一致。
-2. 扩内需为全年首要政策目标，消费端重点推进以旧换新、服务业外资开放、下沉市场潜力释放，投资端靠“六网”及民生类重大基建项目托底。
-3. 新质生产力培育配套多项支持政策，明确六大新兴支柱产业、六大未来产业的发展规划，同步推进创业板改革匹配创新企业融资需求。
-4. 就业端将出台十五年就业规划，配套职业培训等政策对冲AI对就业的冲击，重点保障毕业生等群体就业。
-5. 外交层面2026年为中美关系“大年”，高层互动及元首访问预期向好；中东地缘冲突引发的能源价格波动或延缓国内降息节奏，宽松流动性取向维持不变。
+1. <mark class="rrc-highlight-insight">2026年两会明确政策主基调为积极财政加力、宽松货币托底</mark>，<mark class="rrc-highlight-insight">核心抓手是扩内需（消费+基建投资），同时加快新旧增长动能切换、培育新质生产力</mark>，配套稳就业政策应对AI对就业的颠覆性影响，整体方向与政府工作报告一致。
+2. 外交层面2026年为中美关系“大年”，高层互动叠加美方3月下旬访华预期推动双边关系进展；中东地缘冲突及石油价格波动下，国内政策偏务实防御，加快转向能源独立与地缘多元化增长动能。
+
 ### 关键数字
-6. 2026年财政赤字率为GDP的4%，新增政府债券总额11.89万亿元（创历史新高）；1000亿元财政金融协调基金可撬动超1万亿元信贷，2026年财政科技支出同比增长7.1%。
-7. 消费品以旧换新补贴总规模2500亿元，重点覆盖绿色智能产品；2025年国内服务业规模为81万亿元，2030年目标突破100万亿元，对应复合年增长率4.3%。
-8. 县级及三四线城市占全国人口70%、GDP总量60%，为消费下沉核心市场；2026年109个重大基建项目预计完成投资超7万亿元。
-9. 2025年六大新兴支柱产业产值近6万亿元，2030年目标突破10万亿元；国家级并购基金年带动社会资本超1万亿元，配套1000亿元集成电路、大飞机等领域旗舰投资项目。
-10. 2026年3月下旬美国总统特朗普预计访华。
+1. <mark class="rrc-highlight-insight">2026年财政赤字率为GDP的4%，新增政府债券总规模11.89万亿元（历史新高）</mark>；中央设立<mark class="rrc-highlight-data">1000亿元</mark>财政金融协调基金，可撬动超<mark class="rrc-highlight-data">1万亿元</mark>信贷。
+2. 2026年财政科技支出<mark class="rrc-highlight-data">同比</mark>增长目标为<mark class="rrc-highlight-data">7.1%</mark>。
+3. <mark class="rrc-highlight-insight">2026年消费品以旧换新补贴总规模2500亿元</mark>，重点覆盖绿色智能产品、线下实体零售。
+4. 2025年国内服务业规模为<mark class="rrc-highlight-data">81万亿元</mark>，2030年目标突破<mark class="rrc-highlight-data">100万亿元</mark>，对应<mark class="rrc-highlight-data">复合年增长率</mark><mark class="rrc-highlight-data">4.3%</mark>。
+5. 县级及三四线城市占全国总人口<mark class="rrc-highlight-data">70%</mark>、GDP的<mark class="rrc-highlight-data">60%</mark>，为下沉消费市场核心挖潜对象。
+6. 2026年“六网”（水、电、算力、通信等）及交通、教育、医疗领域重大项目投资规模预计超<mark class="rrc-highlight-data">7万亿元</mark>。
+7. 2025年六大新兴支柱产业（集成电路、航空航天等）产值近<mark class="rrc-highlight-data">6万亿元</mark>，2030年目标突破<mark class="rrc-highlight-data">10万亿元</mark>；国家级科创并购基金年带动社会资本超<mark class="rrc-highlight-data">1万亿元</mark>，配套<mark class="rrc-highlight-data">1000亿元</mark>级科创旗舰投资项目。
+8. 2026年3月下旬美国时任总统特朗普预计访华，为中美关系大年核心落地事件。
 
 ## 第 1 页
 
@@ -72,7 +73,7 @@ jing.econ.liu@hsbc.com.hk
 广州
 
 积极的财政政策将继续
-2026年财政赤字维持在GDP的<mark class="rrc-highlight-data">4%</mark>，新政府
+<mark class="rrc-highlight-insight">2026年财政赤字维持在GDP的4%</mark>，新政府
 债券总额为<mark class="rrc-highlight-data">11.89万亿元人民币</mark>，创历史新高。在政策协调方面，
 中央政府设立<mark class="rrc-highlight-data">1000亿元</mark>财政金融协调基金
 刺激内需，内需有能力调动<mark class="rrc-highlight-data">1万亿元</mark>以上
@@ -226,7 +227,7 @@ https://www.research.hsbc.com
 重大项目将带动基础设施投资。十五年规划纳入109个重大项目
 跨越“六网”（水、电网、算力、通信、管道和
 物流网络）以及交通、教育和医疗基础设施。相关的
-初步估计，<mark class="rrc-highlight-insight">今年这些项目的投资将超过7万亿元人民币</mark>。
+<mark class="rrc-highlight-insight">初步估计，今年这些项目的投资将超过7万亿元人民币</mark>。
 
 技术创新与新生产力的发展
 中国从旧的增长动力向新的增长动力的转变将进一步加快。发改委指出

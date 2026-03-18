@@ -14,6 +14,7 @@ def test_render_report_markdown(tmp_path: Path) -> None:
         title="测试研报",
         source_pdf=Path("input/sample.pdf"),
         ai_summary="- 核心结论：测试",
+        highlighted_ai_summary="- <mark class=\"rrc-highlight-insight\">核心结论</mark>：测试",
         pages=[
             PageContent(
                 page_number=1,
@@ -29,8 +30,8 @@ def test_render_report_markdown(tmp_path: Path) -> None:
 
     assert "# 测试研报" in markdown
     assert "## AI 总结" in markdown
-    assert "Original text" in markdown
     assert "rrc-highlight-insight" in markdown
+    assert "Original text" in markdown
     assert "### 中文" in markdown
     assert "### 英文" in markdown
     assert "### 段落" not in markdown

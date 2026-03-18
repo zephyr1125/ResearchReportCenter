@@ -34,6 +34,7 @@ class DocumentContent:
     source_pdf: Path
     pages: list[PageContent] = field(default_factory=list)
     ai_summary: str = ""
+    highlighted_ai_summary: str = ""
 
 
 @dataclass

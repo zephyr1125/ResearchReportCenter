@@ -134,6 +134,13 @@ def run_build_site(
                 if summary_text.strip():
                     try:
                         document.ai_summary = build_summarizer(settings).summarize(summary_text)
+                        if settings.highlight_enabled:
+                            if highlighter is None:
+                                highlighter = build_highlighter(settings)
+                            document.highlighted_ai_summary = apply_summary_highlights(
+                                document.ai_summary,
+                                highlighter,
+                            )
                     except SummaryError as error:
                         logger.warning("AI 总结生成失败，已跳过：%s", error)
             markdown = render_report_markdown(document, settings.docs_dir)
@@ -236,6 +243,20 @@ def apply_page_highlights(page, highlighter: OpenAICompatibleHighlighter | None)
             item.highlighted_translated_text = highlighted
         else:
             item.highlighted_translated_text = apply_numeric_highlights(highlighted)
+
+
+def apply_summary_highlights(summary_text: str, highlighter: OpenAICompatibleHighlighter | None) -> str:
+    stripped = summary_text.strip()
+    if not stripped:
+        return ""
+    phrases: list[str] = []
+    if highlighter is not None:
+        try:
+            phrases = highlighter.pick_highlights(stripped)
+        except Exception:
+            phrases = []
+    highlighted = apply_phrase_highlights(stripped, phrases)
+    return apply_numeric_highlights(highlighted)
 
 
 def looks_like_contact_block(text: str) -> bool:
