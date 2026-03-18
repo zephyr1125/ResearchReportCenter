@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import fitz
@@ -56,6 +57,10 @@ class PdfProcessor:
                 )
                 item_order += 1
 
+        page_content.items = self._filter_page_items(page_content.items)
+        for index, item in enumerate(page_content.items):
+            item.order = index
+
         drawings = page.get_drawings()
         if drawings and image_count == 0:
             preview_path = asset_dir / f"page-{page_index + 1}-preview.png"
@@ -85,3 +90,132 @@ class PdfProcessor:
     def _save_clip_image(page: fitz.Page, rect: fitz.Rect, output_path: Path) -> None:
         pixmap = page.get_pixmap(clip=rect, dpi=180, alpha=False)
         pixmap.save(output_path)
+
+    def _filter_page_items(self, items: list[TextBlock | ImageBlock]) -> list[TextBlock | ImageBlock]:
+        text_blocks = [item for item in items if isinstance(item, TextBlock)]
+        chart_heavy_page = self._is_chart_heavy_page(text_blocks)
+        filtered: list[TextBlock | ImageBlock] = []
+        for item in items:
+            if isinstance(item, ImageBlock):
+                filtered.append(item)
+                continue
+            if self._should_drop_text_block(item.text, chart_heavy_page=chart_heavy_page):
+                continue
+            filtered.append(item)
+        return filtered
+
+    @staticmethod
+    def _is_chart_heavy_page(text_blocks: list[TextBlock]) -> bool:
+        if len(text_blocks) < 15:
+            return False
+        short_count = sum(1 for block in text_blocks if len(block.text.strip()) <= 40)
+        numericish_count = sum(1 for block in text_blocks if PdfProcessor._is_numericish_block(block.text))
+        return short_count / len(text_blocks) >= 0.6 or numericish_count / len(text_blocks) >= 0.35
+
+    @staticmethod
+    def _should_drop_text_block(text: str, chart_heavy_page: bool) -> bool:
+        stripped = text.strip()
+        if not stripped:
+            return True
+        if PdfProcessor._is_page_number(stripped):
+            return True
+        if PdfProcessor._is_numericish_block(stripped) and len(stripped) <= 40:
+            return True
+        if chart_heavy_page:
+            if not PdfProcessor._looks_like_narrative_block(stripped):
+                return True
+            if (
+                PdfProcessor._has_chart_keywords(stripped)
+                or PdfProcessor._looks_like_figure_title(stripped)
+                or PdfProcessor._is_source_note(stripped)
+                or PdfProcessor._is_date_axis_label(stripped)
+            ):
+                return True
+        return False
+
+    @staticmethod
+    def _is_page_number(text: str) -> bool:
+        lines = [line.strip() for line in text.splitlines() if line.strip()]
+        return len(lines) == 1 and bool(re.fullmatch(r"\[?\d{1,3}\]?", lines[0]))
+
+    @staticmethod
+    def _is_numericish_block(text: str) -> bool:
+        lines = [line.strip() for line in text.splitlines() if line.strip()]
+        if not lines:
+            return False
+        pattern = re.compile(r"^[\d\s,.\-+%():/=]+$")
+        month_date = re.compile(r"^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z\-0-9\s]*$", re.I)
+        year_only = re.compile(r"^(19|20)\d{2}$")
+        matched = 0
+        for line in lines:
+            compact = line.replace("\u200b", "").strip()
+            if pattern.fullmatch(compact) or year_only.fullmatch(compact) or month_date.fullmatch(compact):
+                matched += 1
+        return matched == len(lines) and any(any(ch.isdigit() for ch in line) for line in lines)
+
+    @staticmethod
+    def _looks_like_figure_title(text: str) -> bool:
+        compact = text.strip().lower()
+        return bool(re.match(r"^\d+\s*:", compact))
+
+    @staticmethod
+    def _is_source_note(text: str) -> bool:
+        compact = text.strip().lower()
+        return compact.startswith("source:") or compact.startswith("note:") or compact.startswith("资料来源：")
+
+    @staticmethod
+    def _is_date_axis_label(text: str) -> bool:
+        compact = " ".join(text.strip().split()).lower()
+        patterns = [
+            r"^\d{1,2}\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)$",
+            r"^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)(\-\d{2})?(\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)(\-\d{2})?)*$",
+            r"^days before/after cny.*$",
+            r"^day 0.*$",
+        ]
+        return any(re.match(pattern, compact) for pattern in patterns)
+
+    @staticmethod
+    def _has_chart_keywords(text: str) -> bool:
+        compact = text.strip().lower()
+        keywords = [
+            "source:",
+            "rhs",
+            "lhs",
+            "y-o-y",
+            "m-o-m",
+            "q-o-q",
+            "cagr",
+            "7dma",
+            "rolling average",
+            "day 0",
+            "days before/after cny",
+            "million people",
+            "thousand square meters",
+            "number of flights",
+            "housing sales",
+            "box office revenue",
+            "index, nationwide",
+            "special bonds",
+            "资料来源：",
+            "同比",
+            "元旦前/元旦后",
+            "日滚动平均线",
+            "一千平方米",
+            "百万人",
+            "票房收入",
+            "住房销售",
+            "执行航班数目",
+        ]
+        return any(keyword in compact for keyword in keywords)
+
+    @staticmethod
+    def _looks_like_narrative_block(text: str) -> bool:
+        stripped = text.strip()
+        if len(stripped) >= 180:
+            return True
+        lines = [line.strip() for line in stripped.splitlines() if line.strip()]
+        if len(lines) >= 4 and sum(len(line) for line in lines) >= 120:
+            return True
+        sentence_markers = [". ", "; ", ": ", "。", "；", "："]
+        marker_hits = sum(stripped.count(marker) for marker in sentence_markers)
+        return len(stripped) >= 120 and marker_hits >= 2
