@@ -12,6 +12,7 @@ def test_render_report_markdown(tmp_path: Path) -> None:
 
     document = DocumentContent(
         title="测试研报",
+        translated_title="测试研报中文标题",
         source_pdf=Path("input/sample.pdf"),
         ai_summary="- 核心结论：测试",
         highlighted_ai_summary="- <mark class=\"rrc-highlight-insight\">核心结论</mark>：测试",
@@ -28,7 +29,7 @@ def test_render_report_markdown(tmp_path: Path) -> None:
 
     markdown = render_report_markdown(document, docs_dir)
 
-    assert "# 测试研报" in markdown
+    assert "# 测试研报中文标题" in markdown
     assert "## AI 总结" in markdown
     assert "rrc-highlight-insight" in markdown
     assert "Original text" in markdown
@@ -50,11 +51,12 @@ def test_render_index_markdown() -> None:
                 article_path="reports/sample.md",
                 status="success",
                 processed_at="2026-03-18T20:30:00",
+                translated_title="示例标题",
                 error=None,
             )
         ]
     )
-    assert "[sample](reports/sample.md)" in content
+    assert "[示例标题](reports/sample.md)" in content
 
 
 def test_render_report_list_page(tmp_path: Path) -> None:

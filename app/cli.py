@@ -12,7 +12,7 @@ from app.manifest import load_manifest, save_manifest
 from app.models import ImageBlock, ManifestRecord, TextBlock
 from app.pdf_processor import PdfProcessor
 from app.summarizer import OpenAICompatibleSummarizer, SummaryError
-from app.site_builder import render_index_markdown, render_report_markdown
+from app.site_builder import normalize_translated_report_title, render_index_markdown, render_report_markdown
 from app.translator import OpenAICompatibleTranslator, TranslationError, Translator, VolcengineTranslator
 from app.utils import ensure_relative_posix, sha256_file, stable_slug
 
@@ -116,6 +116,11 @@ def run_build_site(
                 shutil.rmtree(asset_dir)
             logger.info("开始解析 PDF：%s", pdf_path.name)
             document = processor.extract(pdf_path, asset_dir)
+            document.translated_title = build_document_title(
+                document.title,
+                translator,
+                skip_translation=skip_translation,
+            )
             total_pages = len(document.pages)
             logger.info("PDF 解析完成：共 %s 页", total_pages)
             for page_index, page in enumerate(document.pages, start=1):
@@ -181,6 +186,7 @@ def run_build_site(
                 article_path=ensure_relative_posix(article_path, settings.docs_dir),
                 status="success",
                 processed_at=datetime.now().isoformat(timespec="seconds"),
+                translated_title=document.translated_title or document.title,
                 error=None,
             )
             logger.info("处理完成：%s", pdf_path.name)
@@ -193,6 +199,7 @@ def run_build_site(
                 article_path=existing.article_path if existing else None,
                 status="failed",
                 processed_at=datetime.now().isoformat(timespec="seconds"),
+                translated_title=existing.translated_title if existing else None,
                 error=str(error),
             )
 
@@ -212,6 +219,14 @@ def build_translated_text(text: str, translator: Translator | None, skip_transla
     if translator is None:
         raise TranslationError("翻译器未初始化。")
     return translator.translate(text)
+
+
+def build_document_title(title: str, translator: Translator | None, skip_translation: bool) -> str:
+    if skip_translation:
+        return title
+    translated = build_translated_text(title, translator, skip_translation=False)
+    compact = " ".join(translated.split()).strip()
+    return normalize_translated_report_title(compact) or title
 
 
 def build_translator(settings: Settings) -> Translator:

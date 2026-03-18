@@ -35,6 +35,7 @@ class DocumentContent:
     pages: list[PageContent] = field(default_factory=list)
     ai_summary: str = ""
     highlighted_ai_summary: str = ""
+    translated_title: str = ""
 
 
 @dataclass
@@ -45,4 +46,5 @@ class ManifestRecord:
     article_path: str | None
     status: str
     processed_at: str | None
+    translated_title: str | None = None
     error: str | None = None

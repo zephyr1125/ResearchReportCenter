@@ -4,5 +4,5 @@
 
 | 标题 | 原始文件 | 处理时间 |
 | --- | --- | --- |
-| [china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902](reports/china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902.md) | `China Macro Tracker NPC press conferences, global oil volatility.pdf` | `2026-03-18T22:06:19 ` |
-| [china-economic-comment-cf450f6c](reports/china-economic-comment-cf450f6c.md) | `China Economic Comment .pdf` | `2026-03-18T22:23:45 ` |
+| [中国宏观跟踪人大新闻发布会，全球石油波动](reports/china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902.md) | `China Macro Tracker NPC press conferences, global oil volatility.pdf` | `2026-03-18T22:41:07 ` |
+| [通胀意外上行；上调CPI和PPI预测](reports/china-economic-comment-cf450f6c.md) | `China Economic Comment .pdf` | `2026-03-18T22:38:18 ` |

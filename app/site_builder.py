@@ -8,7 +8,7 @@ from app.models import DocumentContent, ImageBlock, ManifestRecord, TextBlock
 
 def render_report_markdown(document: DocumentContent, docs_dir: Path) -> str:
     lines: list[str] = [
-        f"# {document.title}",
+        f"# {document.translated_title or document.title}",
         "",
         f"- 原始文件：`{document.source_pdf.name}`",
         f"- 生成时间：`{datetime.now().isoformat(timespec='seconds')}`",
@@ -159,7 +159,7 @@ def render_index_markdown(records: list[ManifestRecord]) -> str:
     lines.extend(["| 标题 | 原始文件 | 处理时间 |", "| --- | --- | --- |"])
     for record in records:
         article = record.article_path or ""
-        title = Path(article).stem if article else record.source_name
+        title = record.translated_title or (Path(article).stem if article else record.source_name)
         lines.append(
             f"| [{title}]({article}) | `{record.source_name}` | `{record.processed_at or '-'} ` |"
         )

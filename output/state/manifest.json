@@ -6,7 +6,8 @@
       "sha256": "50b3e853639fd6088b67b6345caa0167e39449634032e526f95580e622218104",
       "article_path": "reports/china-economic-comment-cf450f6c.md",
       "status": "success",
-      "processed_at": "2026-03-18T22:23:45",
+      "processed_at": "2026-03-18T22:38:18",
+      "translated_title": "通胀意外上行；上调CPI和PPI预测",
       "error": null
     },
     {
@@ -15,7 +16,8 @@
       "sha256": "4b762002fd5d5522af0fc975ac077e1505f37f2447812eab641f2fa6ad347957",
       "article_path": "reports/china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902.md",
       "status": "success",
-      "processed_at": "2026-03-18T22:06:19",
+      "processed_at": "2026-03-18T22:41:07",
+      "translated_title": "中国宏观跟踪人大新闻发布会，全球石油波动",
       "error": null
     }
   ]

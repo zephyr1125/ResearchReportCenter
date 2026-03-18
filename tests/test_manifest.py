@@ -14,6 +14,7 @@ def test_manifest_roundtrip(tmp_path: Path) -> None:
             article_path="reports/sample.md",
             status="success",
             processed_at="2026-03-18T20:30:00",
+            translated_title="示例标题",
             error=None,
         )
     }
@@ -23,3 +24,4 @@ def test_manifest_roundtrip(tmp_path: Path) -> None:
 
     assert loaded["input/sample.pdf"].sha256 == "abc"
     assert loaded["input/sample.pdf"].article_path == "reports/sample.md"
+    assert loaded["input/sample.pdf"].translated_title == "示例标题"
