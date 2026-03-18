@@ -17,21 +17,15 @@ def render_report_markdown(document: DocumentContent, docs_dir: Path) -> str:
 
     for page in document.pages:
         lines.extend([f"## 第 {page.page_number} 页", ""])
-        block_index = 0
         for item in page.items:
             if isinstance(item, TextBlock):
-                block_index += 1
                 lines.extend(
                     [
-                        f"### 段落 {page.page_number}.{block_index}",
-                        "",
-                        "**原文**",
-                        "",
                         item.text,
                         "",
-                        "**译文**",
-                        "",
                         item.translated_text or "翻译缺失",
+                        "",
+                        "---",
                         "",
                     ]
                 )

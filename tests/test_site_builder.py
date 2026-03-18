@@ -27,10 +27,12 @@ def test_render_report_markdown(tmp_path: Path) -> None:
     markdown = render_report_markdown(document, docs_dir)
 
     assert "# 测试研报" in markdown
-    assert "**原文**" in markdown
     assert "Original text" in markdown
     assert "译文" in markdown
-    assert "assets/sample/figure.png" in markdown
+    assert "### 段落" not in markdown
+    assert "**原文**" not in markdown
+    assert "**译文**" not in markdown
+    assert "../assets/sample/figure.png" in markdown
 
 
 def test_render_index_markdown() -> None:
