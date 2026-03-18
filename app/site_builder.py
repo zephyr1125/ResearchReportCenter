@@ -25,29 +25,43 @@ def render_report_markdown(document: DocumentContent, docs_dir: Path) -> str:
         if page.page_kind == "appendix":
             lines.extend(render_appendix_page(page, docs_dir))
             continue
-        for item in page.items:
-            if isinstance(item, TextBlock):
-                lines.extend(
-                    [
-                        item.text,
-                        "",
-                        item.translated_text or "翻译缺失",
-                        "",
-                        "---",
-                        "",
-                    ]
-                )
-            elif isinstance(item, ImageBlock):
-                relative_path = Path("..") / item.image_path.relative_to(docs_dir)
-                lines.extend(
-                    [
-                        f"![{item.caption}]({relative_path.as_posix()})",
-                        "",
-                        f"*{item.caption}*",
-                        "",
-                    ]
-                )
+        lines.extend(render_bilingual_page(page, docs_dir))
     return "\n".join(lines).strip() + "\n"
+
+
+def render_bilingual_page(page, docs_dir: Path) -> list[str]:
+    chinese_blocks: list[str] = []
+    english_blocks: list[str] = []
+    images: list[ImageBlock] = []
+    for item in page.items:
+        if isinstance(item, TextBlock):
+            english_blocks.append(item.text)
+            chinese_blocks.append(item.translated_text or "翻译缺失")
+        elif isinstance(item, ImageBlock):
+            images.append(item)
+
+    lines: list[str] = []
+    if chinese_blocks:
+        lines.extend(["### 中文", ""])
+        for block in chinese_blocks:
+            lines.extend([block, ""])
+    if english_blocks:
+        lines.extend(["### 英文", ""])
+        for block in english_blocks:
+            lines.extend([block, ""])
+    if images:
+        lines.extend(["### 原页图表", ""])
+        for image in images:
+            relative_path = Path("..") / image.image_path.relative_to(docs_dir)
+            lines.extend(
+                [
+                    f"![{image.caption}]({relative_path.as_posix()})",
+                    "",
+                    f"*{image.caption}*",
+                    "",
+                ]
+            )
+    return lines
 
 
 def render_report_list_page(page, docs_dir: Path) -> list[str]:

@@ -1,60 +1,34 @@
 # China Macro Tracker NPC press conferences, global oil volatility
 
 - 原始文件：`China Macro Tracker NPC press conferences, global oil volatility.pdf`
-- 生成时间：`2026-03-18T21:37:01`
+- 生成时间：`2026-03-18T21:40:29`
 
 ## AI 总结
 
 ### 核心结论
-1. 2026年两会明确政策方向为财政加力提效、货币维持宽松，年内将适时降准降息，明确无意通过人民币贬值获取贸易优势，核心发力点为扩内需、培育新质生产力、稳就业、应对地缘风险，与政府工作报告导向一致。
-2. 扩内需优先级最高，消费端侧重绿色智能产品以旧换新、服务业放宽外资准入、挖掘低层级市场消费潜力；投资端由15年规划重大项目拉动基建投资。
-3. 新质生产力培育聚焦六大新兴支柱产业与六大未来产业，配套国家级并购基金、创业板改革等融资支持政策。
-4. 就业政策将出台15年专项规划，重点通过职业培训应对AI对就业的颠覆性影响，倾斜支持毕业生等重点群体。
-5. 外交层面将2026年定为中美关系大年，预期特朗普3月下旬访华；针对中东冲突带来的能源价格波动风险，政策侧重能源独立、增长驱动地缘多元化，若能源价格持续上涨或降低降息紧迫性。
-
+1. 2026年两会释放的政策方向与政府工作报告一致，以扩内需为首要任务，财政政策主动发力、货币政策维持宽松（年内适时降准降息，无意通过人民币贬值获取贸易优势），配套产业、就业、外交政策稳增长、防风险。
+2. 扩内需端重点升级消费品以旧换新补贴、扩大服务业开放、挖掘下沉市场消费潜力，同时以跨领域重大项目拉动基建投资。
+3. 新质生产力培育为核心产业方向，重点扶持六大新兴支柱产业、布局六大未来产业，配套产业基金、重点领域投资及创业板改革支持创新；同时将出台十五年就业规划，通过职业技能培训等措施应对AI对就业的冲击，重点支持毕业生等群体。
+4. 外交层面将2026年定为中美关系“大年”，预期3月下旬特朗普访华推动双边互动；中东冲突带来能源价格波动风险，国内政策侧重能源独立与增长驱动地缘多元化，若能源价格持续上涨，降息紧迫性或下降但宽松倾向维持。
 ### 关键数字
-1. 2026年财政赤字率为GDP的4%，新发行政府债券11.89万亿元（创历史新高）；1000亿元财政金融协调基金可撬动1万亿元以上信贷。
-2. 2026年科技创新财政支出同比增长7.1%；消费品以旧换新补贴总规模2500亿元。
-3. 2025年国内服务业规模81万亿元，2030年目标超100万亿元，对应复合年增长率4.3%。
-4. 县级及三四线城市占全国人口70%、GDP60%，消费潜力未充分释放。
-5. 15年规划纳入109个重大项目，2026年相关投资规模超7万亿元；2025年六大新兴支柱产业产值近6万亿元，2030年目标超10万亿元。
-6. 国家级并购基金年撬动社会资本超1万亿元，同时配套1000亿元规模的集成电路、大飞机等领域旗舰投资项目。
+5. 2026年财政赤字率为GDP的4%，新增政府债券总额11.89万亿元（历史新高）；新设1000亿元财政金融协调基金可撬动1万亿元以上信贷，2026年科技创新财政支出同比增长7.1%。
+6. 消费品以旧换新补贴总规模2500亿元；2025年服务业规模81万亿元，2030年目标超100万亿元，对应复合年增长率4.3%。
+7. 县级及三四线城市占全国人口70%、GDP的60%，消费潜力尚未充分释放；109个跨领域重大基建项目2026年投资规模超7万亿元。
+8. 2025年六大新兴支柱产业产值近6万亿元，2030年目标超10万亿元；国家级并购基金年带动社会资本超1万亿元，配套1000亿元集成电路、大飞机等领域旗舰投资项目。
 
 ## 第 1 页
 
-11 March 2026
+### 中文
 
 2026年3月11日
-
----
-
-China Macro Tracker
-Economics
-China
 
 中国宏观跟踪器
 经济学
 中国
 
----
-
-NPC press conferences, global oil volatility
-
 全国人大新闻发布会，全球石油波动
 
----
-
-◆ Stimulating domestic demand, including both consumption and
-
 ◆刺激内需，包括消费和
-
----
-
-Erin Xin
-Senior Economist, Greater China
-The Hongkong and Shanghai Banking Corporation Limited
-erin.y.xin@hsbc.com.hk
-+852 2996 6975
 
 艾琳·辛
 大中华区高级经济师
@@ -62,31 +36,11 @@ erin.y.xin@hsbc.com.hk
 erin.y.xin@hsbc.com.hk
 +852 2996 6975
 
----
-
-investment, remains the top priority
-
 投资，仍是重中之重
-
----
-
-◆ China emphasized policy support and vocational training to
 
 ◆中国强调政策支持和职业培训
 
----
-
-counter AI's disruptive effects
-
 对抗AI的颠覆性影响
-
----
-
-Lulu Jiang (Reg. No. S1700523070001)
-Economist, Greater China
-HSBC Qianhai Securities Limited
-lulu.l.l.jiang@hsbcqh.com.cn
-+86 755 8898 3404
 
 蒋露露（注册号S1700523070001）
 大中华区经济学家
@@ -94,40 +48,15 @@ lulu.l.l.jiang@hsbcqh.com.cn
 lulu.l.l.jiang@hsbcqh.com.cn
 +86 755 8898 3404
 
----
-
-◆ Foreign Minister Wang Yi noted China and the US could have
-
 ◆外交部长王毅指出，中美本可以
 
----
-
-a “big year” in bilateral ties; Middle East uncertainty persists
-
 双边关系的“大年”；中东不确定性持续存在
-
----
-
-Jing Liu
-Chief Economist, Greater China
-The Hongkong and Shanghai Banking Corporation Limited
-jing.econ.liu@hsbc.com.hk
-+852 3941 0063
 
 刘靖
 大中华区首席经济学家
 香港上海汇丰银行有限公司
 jing.econ.liu@hsbc.com.hk
 +852 3941 0063
-
----
-
-Three press conferences were held during the Two Sessions, covering three main
-themes: economy, people's livelihood, and diplomacy (Xinhua, 7 Mar). Senior
-officials emphasized fiscal policy will help lead the charge, monetary policy should be
-aimed at a price recovery, as well as structural and reform focus, which closely
-aligned with policy directions conveyed by the government work report (Key
-takeaways from the Government Work Report, 5 Mar).
 
 两会期间举行了三次新闻发布会，涵盖三个主要方面
 主题：经济、民生和外交（新华社，3月7日）。高级
@@ -136,26 +65,9 @@ takeaways from the Government Work Report, 5 Mar).
 与政府工作报告传达的政策方向保持一致（关键
 政府工作报告的要点，3月5日）。
 
----
-
-Heidi Li
-Associate
-Guangzhou
-
 李海蒂
 协理
 广州
-
----
-
-Proactive fiscal policy to continue
-The 2026 fiscal deficit is maintained at 4% of GDP, with newly issued government
-bonds totalling RMB11.89trn, a record high. In terms of policy coordination, the
-central government has established a RMB100bn fiscal-financial coordination fund to
-stimulate domestic demand, which can have the capacity to mobilize over RMB1trn in
-credit. Simultaneously, the composition of fiscal spending is being optimized: while
-maintaining commitments to education, social security, employment, and healthcare,
-spending on science and technology innovation will increase by 7.1% y-o-y.
 
 积极的财政政策将继续
 2026年财政赤字维持在GDP的4%，新政府
@@ -166,7 +78,97 @@ spending on science and technology innovation will increase by 7.1% y-o-y.
 保持对教育、社会保障、就业和医疗保健的承诺，
 科技创新支出将同比增长7.1%。
 
----
+货币政策保持宽松
+中国人民银行行长潘功胜表示，中国人民银行将及时
+今年下调存款准备金率和利率，而结构性货币等其他工具
+政策工具、中期贷款便利业务和公开市场
+也可以购买政府债券。中国央行还打算
+优化信贷配置作为抑制某些企业的进化竞争的一种手段
+行业。在汇率方面，政策立场稳定而明确：
+中国无意通过人民币贬值来获得贸易优势。
+
+刺激国内消费和投资需求
+促进消费是今年的首要政策重点。在商品方面，
+消费品以旧换新补贴计划升级，更加注重
+绿色智能产品和线下实体零售（虽然总补贴
+金额略降至2500亿元人民币）。
+
+在服务业方面，商务部将细化政策，推进试点
+开放增值电信、生物技术和
+外商独资医院。政府预计服务规模
+到2030年，工业将超过100万亿元人民币（2025年为81万亿元人民币，或复合年增长率的4.3%）。
+两会后，发改委还将推出一系列措施
+扩大服务能力，提高服务质量。
+
+报告发行人：香港及上海
+银行股份有限公司
+
+披露和免责声明
+本报告必须与披露和分析师认证一起阅读
+披露附录和免责声明，构成其中的一部分。
+
+汇丰环球投资研究：
+https://www.research.hsbc.com
+
+### 英文
+
+11 March 2026
+
+China Macro Tracker
+Economics
+China
+
+NPC press conferences, global oil volatility
+
+◆ Stimulating domestic demand, including both consumption and
+
+Erin Xin
+Senior Economist, Greater China
+The Hongkong and Shanghai Banking Corporation Limited
+erin.y.xin@hsbc.com.hk
++852 2996 6975
+
+investment, remains the top priority
+
+◆ China emphasized policy support and vocational training to
+
+counter AI's disruptive effects
+
+Lulu Jiang (Reg. No. S1700523070001)
+Economist, Greater China
+HSBC Qianhai Securities Limited
+lulu.l.l.jiang@hsbcqh.com.cn
++86 755 8898 3404
+
+◆ Foreign Minister Wang Yi noted China and the US could have
+
+a “big year” in bilateral ties; Middle East uncertainty persists
+
+Jing Liu
+Chief Economist, Greater China
+The Hongkong and Shanghai Banking Corporation Limited
+jing.econ.liu@hsbc.com.hk
++852 3941 0063
+
+Three press conferences were held during the Two Sessions, covering three main
+themes: economy, people's livelihood, and diplomacy (Xinhua, 7 Mar). Senior
+officials emphasized fiscal policy will help lead the charge, monetary policy should be
+aimed at a price recovery, as well as structural and reform focus, which closely
+aligned with policy directions conveyed by the government work report (Key
+takeaways from the Government Work Report, 5 Mar).
+
+Heidi Li
+Associate
+Guangzhou
+
+Proactive fiscal policy to continue
+The 2026 fiscal deficit is maintained at 4% of GDP, with newly issued government
+bonds totalling RMB11.89trn, a record high. In terms of policy coordination, the
+central government has established a RMB100bn fiscal-financial coordination fund to
+stimulate domestic demand, which can have the capacity to mobilize over RMB1trn in
+credit. Simultaneously, the composition of fiscal spending is being optimized: while
+maintaining commitments to education, social security, employment, and healthcare,
+spending on science and technology innovation will increase by 7.1% y-o-y.
 
 Monetary policy to remain accommodative
 Pan Gongsheng, Governor of the PBoC, indicated that the PBoC will pursue timely
@@ -177,30 +179,11 @@ optimize credit allocation as a means of curbing involutionary competition in ce
 industries. On the exchange rate front, the policy stance is stable and unambiguous:
 China has no intention of depreciating the RMB to gain trade advantages.
 
-货币政策保持宽松
-中国人民银行行长潘功胜表示，中国人民银行将及时
-今年下调存款准备金率和利率，而结构性货币等其他工具
-政策工具、中期贷款便利业务和公开市场
-也可以购买政府债券。中国央行还打算
-优化信贷配置作为抑制某些企业的进化竞争的一种手段
-行业。在汇率方面，政策立场稳定而明确：
-中国无意通过人民币贬值来获得贸易优势。
-
----
-
 Boosting domestic demand, both consumption and investment
 Boosting consumption is the foremost policy priority this year. On the goods side, the
 consumer goods trade-in subsidy program has been upgraded, focusing more on
 green and smart products and offline brick-and-mortar retail (though the total subsidy
 amount was slightly reduced to RMB250bn).
-
-刺激国内消费和投资需求
-促进消费是今年的首要政策重点。在商品方面，
-消费品以旧换新补贴计划升级，更加注重
-绿色智能产品和线下实体零售（虽然总补贴
-金额略降至2500亿元人民币）。
-
----
 
 On the services side, the Ministry of Commerce will refine policies and advance pilot
 programs to open up sectors including value-added telecoms, biotechnology, and
@@ -209,40 +192,17 @@ industry to exceed RMB100trn by 2030 (RMB81trn in 2025, or 4.3% CAGR).
 Following the Two Sessions, the NDRC will also roll out a series of measures to
 expand capacity and improve quality in the services sector.
 
-在服务业方面，商务部将细化政策，推进试点
-开放增值电信、生物技术和
-外商独资医院。政府预计服务规模
-到2030年，工业将超过100万亿元人民币（2025年为81万亿元人民币，或复合年增长率的4.3%）。
-两会后，发改委还将推出一系列措施
-扩大服务能力，提高服务质量。
-
----
-
 Issuer of report: The Hongkong and Shanghai
 Banking Corporation Limited
-
-报告发行人：香港及上海
-银行股份有限公司
-
----
 
 Disclosures & Disclaimer
 This report must be read with the disclosures and the analyst certifications in
 the Disclosure appendix, and with the Disclaimer, which forms part of it.
 
-披露和免责声明
-本报告必须与披露和分析师认证一起阅读
-披露附录和免责声明，构成其中的一部分。
-
----
-
 View HSBC Global Investment Research at:
 https://www.research.hsbc.com
 
-汇丰环球投资研究：
-https://www.research.hsbc.com
-
----
+### 原页图表
 
 ![第 1 页图表预览](../assets/china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902/page-1-preview.png)
 
@@ -250,49 +210,21 @@ https://www.research.hsbc.com
 
 ## 第 2 页
 
-Economics ● China
+### 中文
 
 经济学●中国
 
----
-
-11 March 2026
-
 2026年3月11日
-
----
-
-Minister of Commerce Wang Wentao also highlighted the need to unlock consumption potential
-in lower-tier markets with targeted and differentiated policies: county-level areas and tier-3/4
-cities account for 70% of the national population and 60% of GDP, yet their consumption
-potential remains largely untapped.
 
 商务部部长王文涛也强调需要释放消费潜力
 在有针对性和差异化政策的低层市场：县级地区和-3/4层
 城市占全国人口的70%，国内生产总值的60%，但它们的消费
 潜力在很大程度上仍未开发。
 
----
-
-Major projects will drive infrastructure investment. The 15th FYP incorporates 109 major projects
-spanning “Six Networks” (water, power grid, computing power, communications, pipeline, and
-logistics networks) as well as transportation, education, and healthcare infrastructure. Related
-investment in these projects is preliminarily estimated to exceed RMB7trn this year.
-
 重大项目将带动基础设施投资。十五年规划纳入109个重大项目
 跨越“六网”（水、电网、算力、通信、管道和
 物流网络）以及交通、教育和医疗基础设施。相关的
 初步估计，今年这些项目的投资将超过7万亿元人民币。
-
----
-
-Technology innovation and the development of new productive forces
-China's transition from old to new growth drivers will be further accelerated. The NDRC noted
-that the six emerging pillar industries (integrated circuits, aerospace, biopharmaceuticals, low-
-altitude economy, new energy storage, and intelligent robotics) generated nearly RMB6trn in
-output in 2025, with a target to over RMB10trn by 2030. Six future industries (quantum
-technology, biomanufacturing, green hydrogen and nuclear fusion, brain-computer interfaces,
-embodied intelligence, and 6G) have been identified as the next generation of strategic pillars.
 
 技术创新与新生产力的发展
 中国从旧的增长动力向新的增长动力的转变将进一步加快。发改委指出
@@ -302,42 +234,17 @@ embodied intelligence, and 6G) have been identified as the next generation of st
 技术、生物制造、绿色氢和核聚变、脑机接口、
 具身智能和6G）已被确定为下一代战略支柱。
 
----
-
-Meanwhile, to intensify support for innovation, a national-level M&A fund will be established this
-year to drive over RMB1trn in social capital, enhancing the capital velocity of venture and
-growth investments. The NDRC will also champion flagship investment programs in RMB100bn
-to RMB1trn range in areas including integrated circuits, satellite internet, domestically
-developed large commercial aircraft, and computing infrastructure.
-
 同时，为加大对创新的支持力度，将设立国家级并购基金
 年带动社会资本超过1万亿元，提高创业资本流动速度
 增长投资。国家发改委还将支持1000亿元人民币的旗舰投资项目
 集成电路、卫星互联网、国内
 开发大型商用飞机和计算基础设施。
 
----
-
-Capital market reforms can also serve the development of new productive forces. CSRC
-Chairman Wu Qing highlighted ChiNext board reform as a key priority, centring on three
-elements: 1) more precisely calibrated and inclusive listing standards; 2) replicating the STAR
-Market's reform experience by implementing pre-review IPO processes for eligible high-quality
-innovative companies; and 3) enhancing the overall quality of ChiNext-listed companies.
-
 资本市场改革也可以服务于新生产力的发展。证监会
 吴庆董事长强调创业板改革是重中之重，围绕三个方面
 要素：1）更精确地校准和包容性的上市标准；2）复制STAR
 通过对符合条件的高质量IPO实施预审查流程的市场改革经验
 创新型企业；（三）提升创业板上市公司整体素质。
-
----
-
-More employment support policies to boost confidence
-The Ministry of Human Resources and Social Security is working with relevant departments to
-formulate the 15th FYP for Employment, which includes major employment policies and action
-plans. Meanwhile, it is studying relevant policies to actively leverage the role of AI in creating
-new jobs and empowering traditional jobs, which may include large-scale vocational skills
-training and increased support for key groups such as graduates.
 
 出台更多就业支持政策提振信心
 人社部正会同有关部门
@@ -346,7 +253,67 @@ training and increased support for key groups such as graduates.
 新工作和赋予传统工作权力，其中可能包括大规模职业技能
 培训和增加对毕业生等关键群体的支持。
 
----
+中美关系的“大年”
+3月8日，中国外交部长王毅就关键问题举行记者招待会
+关于中美关系、中东、日本等。王将2026年描述为
+中美关系的“里程碑式”或“大年”，引用正在进行的高层交流和预期
+美国总统特朗普3月下旬对中国进行了富有成效的访问。关于中东，王
+重申了中国对多边主义和“开放、排他性”全球治理的偏好。
+
+中东冲突继续带来不确定性
+为应对当前伊朗局势和能源价格飙升带来的风险，中国的政策
+到目前为止，混合是务实和防御性的：利用现有的缓冲（储备、贸易顺差、国内-
+同时逐步将更多资源转向能源独立和
+地缘政治多元化的增长驱动因素。
+
+在货币政策方面，如果全球能源价格持续上涨，就有可能出现
+中国人民银行降低了传递政策降息的紧迫性，相反，它可能更愿意提供
+通过降准和结构性货币工具通过流动性渠道支持目标
+部门。这将在很大程度上取决于能源成本对更广泛经济的传递，
+尽管我们预计，考虑到国内增长面临的压力，宽松倾向可能会继续存在。
+
+### 英文
+
+Economics ● China
+
+11 March 2026
+
+Minister of Commerce Wang Wentao also highlighted the need to unlock consumption potential
+in lower-tier markets with targeted and differentiated policies: county-level areas and tier-3/4
+cities account for 70% of the national population and 60% of GDP, yet their consumption
+potential remains largely untapped.
+
+Major projects will drive infrastructure investment. The 15th FYP incorporates 109 major projects
+spanning “Six Networks” (water, power grid, computing power, communications, pipeline, and
+logistics networks) as well as transportation, education, and healthcare infrastructure. Related
+investment in these projects is preliminarily estimated to exceed RMB7trn this year.
+
+Technology innovation and the development of new productive forces
+China's transition from old to new growth drivers will be further accelerated. The NDRC noted
+that the six emerging pillar industries (integrated circuits, aerospace, biopharmaceuticals, low-
+altitude economy, new energy storage, and intelligent robotics) generated nearly RMB6trn in
+output in 2025, with a target to over RMB10trn by 2030. Six future industries (quantum
+technology, biomanufacturing, green hydrogen and nuclear fusion, brain-computer interfaces,
+embodied intelligence, and 6G) have been identified as the next generation of strategic pillars.
+
+Meanwhile, to intensify support for innovation, a national-level M&A fund will be established this
+year to drive over RMB1trn in social capital, enhancing the capital velocity of venture and
+growth investments. The NDRC will also champion flagship investment programs in RMB100bn
+to RMB1trn range in areas including integrated circuits, satellite internet, domestically
+developed large commercial aircraft, and computing infrastructure.
+
+Capital market reforms can also serve the development of new productive forces. CSRC
+Chairman Wu Qing highlighted ChiNext board reform as a key priority, centring on three
+elements: 1) more precisely calibrated and inclusive listing standards; 2) replicating the STAR
+Market's reform experience by implementing pre-review IPO processes for eligible high-quality
+innovative companies; and 3) enhancing the overall quality of ChiNext-listed companies.
+
+More employment support policies to boost confidence
+The Ministry of Human Resources and Social Security is working with relevant departments to
+formulate the 15th FYP for Employment, which includes major employment policies and action
+plans. Meanwhile, it is studying relevant policies to actively leverage the role of AI in creating
+new jobs and empowering traditional jobs, which may include large-scale vocational skills
+training and increased support for key groups such as graduates.
 
 A “big year” for China-US relations
 On 8 March, China’s Foreign Minister Wang Yi held a press conference covering key issues
@@ -355,28 +322,11 @@ a “landmark” or “big year” for China-US ties, citing ongoing high-level 
 a productive visit by US President Trump to China in late March. On the Middle East, Wang
 reiterated China’s preference for multilateralism and “open, exclusive” global governance.
 
-中美关系的“大年”
-3月8日，中国外交部长王毅就关键问题举行记者招待会
-关于中美关系、中东、日本等。王将2026年描述为
-中美关系的“里程碑式”或“大年”，引用正在进行的高层交流和预期
-美国总统特朗普3月下旬对中国进行了富有成效的访问。关于中东，王
-重申了中国对多边主义和“开放、排他性”全球治理的偏好。
-
----
-
 Middle East conflict continues to pose uncertainties
 To counter the risks arising from current Iran situation and surging energy prices, China’s policy
 mix so far is pragmatic and defensive: using existing buffers (reserves, trade surplus, domestic-
 oriented sectors) while gradually shifting more resources toward energy-independent and
 geopolitically diversified growth drivers.
-
-中东冲突继续带来不确定性
-为应对当前伊朗局势和能源价格飙升带来的风险，中国的政策
-到目前为止，混合是务实和防御性的：利用现有的缓冲（储备、贸易顺差、国内-
-同时逐步将更多资源转向能源独立和
-地缘政治多元化的增长驱动因素。
-
----
 
 On the monetary policy front, if elevated global energy prices are prolonged, there is a risk of
 reduced urgency by PBOC to pass on policy rate cuts, and instead it may prefer to provide
@@ -384,13 +334,7 @@ support through the liquidity channel via RRR cuts and structural monetary tools
 sectors. This will largely depend on the passthrough of energy costs to the broader economy,
 though we expect the easing bias will likely remain considering pressures on domestic growth.
 
-在货币政策方面，如果全球能源价格持续上涨，就有可能出现
-中国人民银行降低了传递政策降息的紧迫性，相反，它可能更愿意提供
-通过降准和结构性货币工具通过流动性渠道支持目标
-部门。这将在很大程度上取决于能源成本对更广泛经济的传递，
-尽管我们预计，考虑到国内增长面临的压力，宽松倾向可能会继续存在。
-
----
+### 原页图表
 
 ![第 2 页图表预览](../assets/china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902/page-2-preview.png)
 
@@ -398,11 +342,15 @@ though we expect the easing bias will likely remain considering pressures on dom
 
 ## 第 3 页
 
+### 原页图表
+
 ![第 3 页图表预览](../assets/china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902/page-3-preview.png)
 
 *第 3 页图表预览*
 
 ## 第 4 页
+
+### 原页图表
 
 ![第 4 页图表预览](../assets/china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902/page-4-preview.png)
 
@@ -410,11 +358,15 @@ though we expect the easing bias will likely remain considering pressures on dom
 
 ## 第 5 页
 
+### 原页图表
+
 ![第 5 页图表预览](../assets/china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902/page-5-preview.png)
 
 *第 5 页图表预览*
 
 ## 第 6 页
+
+### 原页图表
 
 ![第 6 页图表预览](../assets/china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902/page-6-preview.png)
 
@@ -422,17 +374,21 @@ though we expect the easing bias will likely remain considering pressures on dom
 
 ## 第 7 页
 
-R007 (7-day weighted-averaged interbank bond
-collateral repo rate )
-DR007 (7-day weighted-averaged interbank bond
-collateral repo rate: depository institutions)
+### 中文
 
 R007（7天加权平均银行间债券
 抵押回购利率）
 DR007（7天加权平均银行间债券
 抵押回购利率：存款机构）
 
----
+### 英文
+
+R007 (7-day weighted-averaged interbank bond
+collateral repo rate )
+DR007 (7-day weighted-averaged interbank bond
+collateral repo rate: depository institutions)
+
+### 原页图表
 
 ![第 7 页图表预览](../assets/china-macro-tracker-npc-press-conferences-global-oil-volatility-1fa77902/page-7-preview.png)
 

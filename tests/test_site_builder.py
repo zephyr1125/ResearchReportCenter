@@ -31,6 +31,8 @@ def test_render_report_markdown(tmp_path: Path) -> None:
     assert "## AI 总结" in markdown
     assert "Original text" in markdown
     assert "译文" in markdown
+    assert "### 中文" in markdown
+    assert "### 英文" in markdown
     assert "### 段落" not in markdown
     assert "**原文**" not in markdown
     assert "**译文**" not in markdown
