@@ -110,39 +110,68 @@ def run_build_site(
 
         try:
             if translator is None and not skip_translation:
+                logger.info("初始化翻译器：%s", settings.translator_provider)
                 translator = build_translator(settings)
             if asset_dir.exists():
                 shutil.rmtree(asset_dir)
+            logger.info("开始解析 PDF：%s", pdf_path.name)
             document = processor.extract(pdf_path, asset_dir)
-            for page in document.pages:
-                for item in page.items:
-                    if isinstance(item, TextBlock):
-                        if page.page_kind == "appendix":
-                            item.translated_text = ""
-                            continue
-                        item.translated_text = build_translated_text(
-                            item.text,
-                            translator,
-                            skip_translation=skip_translation,
+            total_pages = len(document.pages)
+            logger.info("PDF 解析完成：共 %s 页", total_pages)
+            for page_index, page in enumerate(document.pages, start=1):
+                text_blocks = [item for item in page.items if isinstance(item, TextBlock)]
+                logger.info(
+                    "处理第 %s/%s 页：类型=%s，文本块=%s",
+                    page_index,
+                    total_pages,
+                    page.page_kind,
+                    len(text_blocks),
+                )
+                translated_blocks = 0
+                for item in text_blocks:
+                    if page.page_kind == "appendix":
+                        item.translated_text = ""
+                        continue
+                    item.translated_text = build_translated_text(
+                        item.text,
+                        translator,
+                        skip_translation=skip_translation,
+                    )
+                    translated_blocks += 1
+                    if translated_blocks == len(text_blocks) or translated_blocks % 5 == 0:
+                        logger.info(
+                            "第 %s 页翻译进度：%s/%s",
+                            page_index,
+                            translated_blocks,
+                            len(text_blocks),
                         )
                 if settings.highlight_enabled and page.page_kind == "content":
                     if highlighter is None and settings.summary_enabled and not skip_translation:
+                        logger.info("初始化高亮模型")
                         highlighter = build_highlighter(settings)
+                    logger.info("开始高亮第 %s 页", page_index)
                     apply_page_highlights(page, highlighter)
+                    logger.info("完成高亮第 %s 页", page_index)
             if settings.summary_enabled and not skip_translation:
                 summary_text = build_summary_source(document)
                 if summary_text.strip():
                     try:
+                        logger.info("开始生成 AI 总结")
                         document.ai_summary = build_summarizer(settings).summarize(summary_text)
                         if settings.highlight_enabled:
                             if highlighter is None:
+                                logger.info("初始化高亮模型")
                                 highlighter = build_highlighter(settings)
+                            logger.info("开始高亮 AI 总结")
                             document.highlighted_ai_summary = apply_summary_highlights(
                                 document.ai_summary,
                                 highlighter,
                             )
+                            logger.info("完成高亮 AI 总结")
+                        logger.info("AI 总结生成完成")
                     except SummaryError as error:
                         logger.warning("AI 总结生成失败，已跳过：%s", error)
+            logger.info("开始生成文章 Markdown：%s", article_path.name)
             markdown = render_report_markdown(document, settings.docs_dir)
             article_path.write_text(markdown, encoding="utf-8")
             manifest[source_key] = ManifestRecord(
@@ -173,6 +202,7 @@ def run_build_site(
     write_index(settings, manifest)
     write_failures(settings, manifest)
     save_manifest(settings.manifest_path, manifest)
+    logger.info("站点索引与状态文件已更新。")
     return 0
 
 
