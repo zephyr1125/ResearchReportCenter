@@ -25,6 +25,10 @@ class Settings:
     volcengine_secret_key: str
     volcengine_region: str
     target_language: str
+    summary_enabled: bool
+    summary_api_key: str
+    summary_base_url: str
+    summary_model: str
 
     @classmethod
     def load(cls, root_dir: Path) -> "Settings":
@@ -50,6 +54,10 @@ class Settings:
             volcengine_secret_key=os.getenv("VOLCENGINE_SECRET_KEY", "").strip(),
             volcengine_region=os.getenv("VOLCENGINE_REGION", "cn-north-1").strip(),
             target_language=os.getenv("TARGET_LANGUAGE", "zh").strip(),
+            summary_enabled=os.getenv("SUMMARY_ENABLED", "false").strip().lower() in {"1", "true", "yes", "on"},
+            summary_api_key=os.getenv("SUMMARY_API_KEY", "").strip(),
+            summary_base_url=os.getenv("SUMMARY_BASE_URL", "").strip(),
+            summary_model=os.getenv("SUMMARY_MODEL", "").strip(),
         )
 
     def ensure_directories(self) -> None:

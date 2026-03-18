@@ -57,8 +57,9 @@ class PdfProcessor:
                 )
                 item_order += 1
 
-        page_content.items = self._filter_page_items(page_content.items)
         page_content.page_kind = self._detect_page_kind(page_content.items)
+        if page_content.page_kind != "appendix":
+            page_content.items = self._filter_page_items(page_content.items)
         for index, item in enumerate(page_content.items):
             item.order = index
 
@@ -111,11 +112,39 @@ class PdfProcessor:
         if not text_blocks:
             return "content"
         texts = [block.text.strip() for block in text_blocks if block.text.strip()]
+        if PdfProcessor._is_disclaimer_page(texts):
+            return "appendix"
         if any("Links to recent reports in the China Macro Tracker series" in text for text in texts):
             dated_titles = sum(1 for text in texts if PdfProcessor._looks_like_report_list_entry(text))
             if dated_titles >= 8:
                 return "report_list"
         return "content"
+
+    @staticmethod
+    def _is_disclaimer_page(texts: list[str]) -> bool:
+        compact = "\n".join(texts).lower()
+        title_markers = [
+            "disclosures & disclaimer",
+            "disclosure appendix",
+            "additional disclosures",
+            "disclaimer",
+        ]
+        if any(marker in compact for marker in title_markers):
+            return True
+        keywords = [
+            "disclosures & disclaimer",
+            "disclosure appendix",
+            "additional disclosures",
+            "disclaimer",
+            "issuer of report",
+            "legal entities as at",
+            "all rights reserved",
+            "research business",
+            "financial conduct authority",
+            "monetary authority",
+        ]
+        hits = sum(1 for keyword in keywords if keyword in compact)
+        return hits >= 2
 
     @staticmethod
     def _looks_like_report_list_entry(text: str) -> bool:

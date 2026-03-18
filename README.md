@@ -44,6 +44,18 @@ TARGET_LANGUAGE=zh
 
 > 火山引擎使用 `TranslateText` 文本翻译接口，适合当前“文本块翻译 + 原图保留”的实现方式。
 
+### 可选：启用 AI 总结
+
+```bash
+SUMMARY_ENABLED=true
+SUMMARY_API_KEY=your_summary_api_key
+SUMMARY_BASE_URL=https://api.openai.com/v1
+SUMMARY_MODEL=gpt-4.1-mini
+```
+
+> AI 总结会插入文章开头，重点提取关键结论和数字指标。  
+> 这部分需要额外的大模型能力，和机器翻译接口是两套配置。
+
 ## 使用方式
 
 ### 增量构建站点

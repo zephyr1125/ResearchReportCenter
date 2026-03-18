@@ -10,6 +10,7 @@ from app.config import Settings
 from app.manifest import load_manifest, save_manifest
 from app.models import ImageBlock, ManifestRecord, TextBlock
 from app.pdf_processor import PdfProcessor
+from app.summarizer import OpenAICompatibleSummarizer, SummaryError
 from app.site_builder import render_index_markdown, render_report_markdown
 from app.translator import OpenAICompatibleTranslator, TranslationError, Translator, VolcengineTranslator
 from app.utils import ensure_relative_posix, sha256_file, stable_slug
@@ -114,11 +115,21 @@ def run_build_site(
             for page in document.pages:
                 for item in page.items:
                     if isinstance(item, TextBlock):
+                        if page.page_kind == "appendix":
+                            item.translated_text = ""
+                            continue
                         item.translated_text = build_translated_text(
                             item.text,
                             translator,
                             skip_translation=skip_translation,
                         )
+            if settings.summary_enabled and not skip_translation:
+                summary_text = build_summary_source(document)
+                if summary_text.strip():
+                    try:
+                        document.ai_summary = build_summarizer(settings).summarize(summary_text)
+                    except SummaryError as error:
+                        logger.warning("AI 总结生成失败，已跳过：%s", error)
             markdown = render_report_markdown(document, settings.docs_dir)
             article_path.write_text(markdown, encoding="utf-8")
             manifest[source_key] = ManifestRecord(
@@ -175,6 +186,25 @@ def build_translator(settings: Settings) -> Translator:
             region=settings.volcengine_region,
         )
     raise ValueError(f"不支持的翻译提供商：{settings.translator_provider}")
+
+
+def build_summarizer(settings: Settings) -> OpenAICompatibleSummarizer:
+    return OpenAICompatibleSummarizer(
+        api_key=settings.summary_api_key,
+        base_url=settings.summary_base_url,
+        model=settings.summary_model,
+    )
+
+
+def build_summary_source(document) -> str:
+    parts: list[str] = []
+    for page in document.pages:
+        if page.page_kind in {"appendix", "report_list"}:
+            continue
+        for item in page.items:
+            if isinstance(item, TextBlock):
+                parts.append(item.translated_text or item.text)
+    return "\n\n".join(parts)
 
 
 def write_index(settings: Settings, manifest: dict[str, ManifestRecord]) -> None:

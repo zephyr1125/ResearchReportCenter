@@ -13,6 +13,7 @@ def test_render_report_markdown(tmp_path: Path) -> None:
     document = DocumentContent(
         title="测试研报",
         source_pdf=Path("input/sample.pdf"),
+        ai_summary="- 核心结论：测试",
         pages=[
             PageContent(
                 page_number=1,
@@ -27,6 +28,7 @@ def test_render_report_markdown(tmp_path: Path) -> None:
     markdown = render_report_markdown(document, docs_dir)
 
     assert "# 测试研报" in markdown
+    assert "## AI 总结" in markdown
     assert "Original text" in markdown
     assert "译文" in markdown
     assert "### 段落" not in markdown
@@ -89,3 +91,24 @@ def test_parse_report_list_entry() -> None:
 def test_normalize_translated_report_title() -> None:
     assert normalize_translated_report_title("平衡的方法，2025年11月12日") == "平衡的方法"
     assert normalize_translated_report_title("2025年10月1日黄金周前的新措施") == "黄金周前的新措施"
+
+
+def test_render_appendix_page_keeps_original_only(tmp_path: Path) -> None:
+    docs_dir = tmp_path / "docs"
+    document = DocumentContent(
+        title="测试披露页",
+        source_pdf=Path("input/sample.pdf"),
+        pages=[
+            PageContent(
+                page_number=10,
+                page_kind="appendix",
+                items=[
+                    TextBlock(order=0, page_number=10, text="Disclosures & Disclaimer", translated_text="披露和免责声明"),
+                ],
+            )
+        ],
+    )
+    markdown = render_report_markdown(document, docs_dir)
+    assert "_以下内容保留原文，不做翻译。_" in markdown
+    assert "Disclosures & Disclaimer" in markdown
+    assert "披露和免责声明" not in markdown

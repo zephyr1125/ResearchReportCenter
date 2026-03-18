@@ -14,11 +14,16 @@ def render_report_markdown(document: DocumentContent, docs_dir: Path) -> str:
         f"- 生成时间：`{datetime.now().isoformat(timespec='seconds')}`",
         "",
     ]
+    if document.ai_summary.strip():
+        lines.extend(["## AI 总结", "", document.ai_summary.strip(), ""])
 
     for page in document.pages:
         lines.extend([f"## 第 {page.page_number} 页", ""])
         if page.page_kind == "report_list":
             lines.extend(render_report_list_page(page, docs_dir))
+            continue
+        if page.page_kind == "appendix":
+            lines.extend(render_appendix_page(page, docs_dir))
             continue
         for item in page.items:
             if isinstance(item, TextBlock):
@@ -80,6 +85,24 @@ def render_report_list_page(page, docs_dir: Path) -> list[str]:
         for date_text, chinese_title, english_title in entries:
             lines.append(f"| {date_text} | {chinese_title} | {english_title} |")
         lines.append("")
+    return lines
+
+
+def render_appendix_page(page, docs_dir: Path) -> list[str]:
+    lines: list[str] = ["### 披露与免责声明", "", "_以下内容保留原文，不做翻译。_", ""]
+    for item in page.items:
+        if isinstance(item, TextBlock):
+            lines.extend([item.text, "", "---", ""])
+        elif isinstance(item, ImageBlock):
+            relative_path = Path("..") / item.image_path.relative_to(docs_dir)
+            lines.extend(
+                [
+                    f"![{item.caption}]({relative_path.as_posix()})",
+                    "",
+                    f"*{item.caption}*",
+                    "",
+                ]
+            )
     return lines
 
 
