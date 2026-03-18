@@ -123,19 +123,16 @@ class PdfProcessor:
     @staticmethod
     def _is_disclaimer_page(texts: list[str]) -> bool:
         compact = "\n".join(texts).lower()
-        title_markers = [
+        normalized_texts = {" ".join(text.split()).strip().lower() for text in texts if text.strip()}
+        title_markers = {
             "disclosures & disclaimer",
             "disclosure appendix",
             "additional disclosures",
             "disclaimer",
-        ]
-        if any(marker in compact for marker in title_markers):
+        }
+        if normalized_texts & title_markers:
             return True
         keywords = [
-            "disclosures & disclaimer",
-            "disclosure appendix",
-            "additional disclosures",
-            "disclaimer",
             "issuer of report",
             "legal entities as at",
             "all rights reserved",
@@ -144,7 +141,7 @@ class PdfProcessor:
             "monetary authority",
         ]
         hits = sum(1 for keyword in keywords if keyword in compact)
-        return hits >= 2
+        return hits >= 3
 
     @staticmethod
     def _looks_like_report_list_entry(text: str) -> bool:

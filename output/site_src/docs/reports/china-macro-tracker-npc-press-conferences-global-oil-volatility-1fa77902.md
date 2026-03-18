@@ -1,15 +1,30 @@
 # China Macro Tracker NPC press conferences, global oil volatility
 
 - 原始文件：`China Macro Tracker NPC press conferences, global oil volatility.pdf`
-- 生成时间：`2026-03-18T21:24:35`
+- 生成时间：`2026-03-18T21:37:01`
+
+## AI 总结
+
+### 核心结论
+1. 2026年两会明确政策方向为财政加力提效、货币维持宽松，年内将适时降准降息，明确无意通过人民币贬值获取贸易优势，核心发力点为扩内需、培育新质生产力、稳就业、应对地缘风险，与政府工作报告导向一致。
+2. 扩内需优先级最高，消费端侧重绿色智能产品以旧换新、服务业放宽外资准入、挖掘低层级市场消费潜力；投资端由15年规划重大项目拉动基建投资。
+3. 新质生产力培育聚焦六大新兴支柱产业与六大未来产业，配套国家级并购基金、创业板改革等融资支持政策。
+4. 就业政策将出台15年专项规划，重点通过职业培训应对AI对就业的颠覆性影响，倾斜支持毕业生等重点群体。
+5. 外交层面将2026年定为中美关系大年，预期特朗普3月下旬访华；针对中东冲突带来的能源价格波动风险，政策侧重能源独立、增长驱动地缘多元化，若能源价格持续上涨或降低降息紧迫性。
+
+### 关键数字
+1. 2026年财政赤字率为GDP的4%，新发行政府债券11.89万亿元（创历史新高）；1000亿元财政金融协调基金可撬动1万亿元以上信贷。
+2. 2026年科技创新财政支出同比增长7.1%；消费品以旧换新补贴总规模2500亿元。
+3. 2025年国内服务业规模81万亿元，2030年目标超100万亿元，对应复合年增长率4.3%。
+4. 县级及三四线城市占全国人口70%、GDP60%，消费潜力未充分释放。
+5. 15年规划纳入109个重大项目，2026年相关投资规模超7万亿元；2025年六大新兴支柱产业产值近6万亿元，2030年目标超10万亿元。
+6. 国家级并购基金年撬动社会资本超1万亿元，同时配套1000亿元规模的集成电路、大飞机等领域旗舰投资项目。
 
 ## 第 1 页
 
-### 披露与免责声明
-
-_以下内容保留原文，不做翻译。_
-
 11 March 2026
+
+2026年3月11日
 
 ---
 
@@ -17,13 +32,21 @@ China Macro Tracker
 Economics
 China
 
+中国宏观跟踪器
+经济学
+中国
+
 ---
 
 NPC press conferences, global oil volatility
 
+全国人大新闻发布会，全球石油波动
+
 ---
 
 ◆ Stimulating domestic demand, including both consumption and
+
+◆刺激内需，包括消费和
 
 ---
 
@@ -33,17 +56,29 @@ The Hongkong and Shanghai Banking Corporation Limited
 erin.y.xin@hsbc.com.hk
 +852 2996 6975
 
+艾琳·辛
+大中华区高级经济师
+香港上海汇丰银行有限公司
+erin.y.xin@hsbc.com.hk
++852 2996 6975
+
 ---
 
 investment, remains the top priority
+
+投资，仍是重中之重
 
 ---
 
 ◆ China emphasized policy support and vocational training to
 
+◆中国强调政策支持和职业培训
+
 ---
 
 counter AI's disruptive effects
+
+对抗AI的颠覆性影响
 
 ---
 
@@ -53,19 +88,35 @@ HSBC Qianhai Securities Limited
 lulu.l.l.jiang@hsbcqh.com.cn
 +86 755 8898 3404
 
+蒋露露（注册号S1700523070001）
+大中华区经济学家
+汇丰前海证券有限公司
+lulu.l.l.jiang@hsbcqh.com.cn
++86 755 8898 3404
+
 ---
 
 ◆ Foreign Minister Wang Yi noted China and the US could have
 
+◆外交部长王毅指出，中美本可以
+
 ---
 
 a “big year” in bilateral ties; Middle East uncertainty persists
+
+双边关系的“大年”；中东不确定性持续存在
 
 ---
 
 Jing Liu
 Chief Economist, Greater China
 The Hongkong and Shanghai Banking Corporation Limited
+jing.econ.liu@hsbc.com.hk
++852 3941 0063
+
+刘靖
+大中华区首席经济学家
+香港上海汇丰银行有限公司
 jing.econ.liu@hsbc.com.hk
 +852 3941 0063
 
@@ -78,11 +129,22 @@ aimed at a price recovery, as well as structural and reform focus, which closely
 aligned with policy directions conveyed by the government work report (Key
 takeaways from the Government Work Report, 5 Mar).
 
+两会期间举行了三次新闻发布会，涵盖三个主要方面
+主题：经济、民生和外交（新华社，3月7日）。高级
+官员们强调，财政政策将有助于带头，货币政策应该
+旨在价格复苏，以及结构和改革的重点，这密切相关
+与政府工作报告传达的政策方向保持一致（关键
+政府工作报告的要点，3月5日）。
+
 ---
 
 Heidi Li
 Associate
 Guangzhou
+
+李海蒂
+协理
+广州
 
 ---
 
@@ -95,6 +157,15 @@ credit. Simultaneously, the composition of fiscal spending is being optimized: w
 maintaining commitments to education, social security, employment, and healthcare,
 spending on science and technology innovation will increase by 7.1% y-o-y.
 
+积极的财政政策将继续
+2026年财政赤字维持在GDP的4%，新政府
+债券总额为11.89万亿元人民币，创历史新高。在政策协调方面，
+中央政府设立1000亿元财政金融协调基金
+刺激内需，内需有能力调动1万亿元以上
+信贷。与此同时，财政支出的构成正在优化：同时
+保持对教育、社会保障、就业和医疗保健的承诺，
+科技创新支出将同比增长7.1%。
+
 ---
 
 Monetary policy to remain accommodative
@@ -106,6 +177,15 @@ optimize credit allocation as a means of curbing involutionary competition in ce
 industries. On the exchange rate front, the policy stance is stable and unambiguous:
 China has no intention of depreciating the RMB to gain trade advantages.
 
+货币政策保持宽松
+中国人民银行行长潘功胜表示，中国人民银行将及时
+今年下调存款准备金率和利率，而结构性货币等其他工具
+政策工具、中期贷款便利业务和公开市场
+也可以购买政府债券。中国央行还打算
+优化信贷配置作为抑制某些企业的进化竞争的一种手段
+行业。在汇率方面，政策立场稳定而明确：
+中国无意通过人民币贬值来获得贸易优势。
+
 ---
 
 Boosting domestic demand, both consumption and investment
@@ -113,6 +193,12 @@ Boosting consumption is the foremost policy priority this year. On the goods sid
 consumer goods trade-in subsidy program has been upgraded, focusing more on
 green and smart products and offline brick-and-mortar retail (though the total subsidy
 amount was slightly reduced to RMB250bn).
+
+刺激国内消费和投资需求
+促进消费是今年的首要政策重点。在商品方面，
+消费品以旧换新补贴计划升级，更加注重
+绿色智能产品和线下实体零售（虽然总补贴
+金额略降至2500亿元人民币）。
 
 ---
 
@@ -123,10 +209,20 @@ industry to exceed RMB100trn by 2030 (RMB81trn in 2025, or 4.3% CAGR).
 Following the Two Sessions, the NDRC will also roll out a series of measures to
 expand capacity and improve quality in the services sector.
 
+在服务业方面，商务部将细化政策，推进试点
+开放增值电信、生物技术和
+外商独资医院。政府预计服务规模
+到2030年，工业将超过100万亿元人民币（2025年为81万亿元人民币，或复合年增长率的4.3%）。
+两会后，发改委还将推出一系列措施
+扩大服务能力，提高服务质量。
+
 ---
 
 Issuer of report: The Hongkong and Shanghai
 Banking Corporation Limited
+
+报告发行人：香港及上海
+银行股份有限公司
 
 ---
 
@@ -134,9 +230,16 @@ Disclosures & Disclaimer
 This report must be read with the disclosures and the analyst certifications in
 the Disclosure appendix, and with the Disclaimer, which forms part of it.
 
+披露和免责声明
+本报告必须与披露和分析师认证一起阅读
+披露附录和免责声明，构成其中的一部分。
+
 ---
 
 View HSBC Global Investment Research at:
+https://www.research.hsbc.com
+
+汇丰环球投资研究：
 https://www.research.hsbc.com
 
 ---
