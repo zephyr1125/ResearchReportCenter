@@ -1,0 +1,10 @@
+.rrc-highlight-data {
+  background: linear-gradient(transparent 40%, rgba(255, 216, 77, 0.75) 40%);
+  padding: 0 0.08em;
+}
+
+.rrc-highlight-insight {
+  background: linear-gradient(transparent 35%, rgba(144, 238, 144, 0.55) 35%);
+  padding: 0 0.08em;
+  border-radius: 0.1rem;
+}

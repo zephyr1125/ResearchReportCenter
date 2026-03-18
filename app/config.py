@@ -29,6 +29,7 @@ class Settings:
     summary_api_key: str
     summary_base_url: str
     summary_model: str
+    highlight_enabled: bool
 
     @classmethod
     def load(cls, root_dir: Path) -> "Settings":
@@ -58,6 +59,7 @@ class Settings:
             summary_api_key=os.getenv("SUMMARY_API_KEY", "").strip(),
             summary_base_url=os.getenv("SUMMARY_BASE_URL", "").strip(),
             summary_model=os.getenv("SUMMARY_MODEL", "").strip(),
+            highlight_enabled=os.getenv("HIGHLIGHT_ENABLED", "true").strip().lower() in {"1", "true", "yes", "on"},
         )
 
     def ensure_directories(self) -> None:

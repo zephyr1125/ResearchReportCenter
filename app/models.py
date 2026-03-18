@@ -10,6 +10,7 @@ class TextBlock:
     page_number: int
     text: str
     translated_text: str = ""
+    highlighted_translated_text: str = ""
 
 
 @dataclass

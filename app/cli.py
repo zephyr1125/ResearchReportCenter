@@ -7,6 +7,7 @@ from datetime import datetime
 from pathlib import Path
 
 from app.config import Settings
+from app.highlighter import OpenAICompatibleHighlighter, apply_numeric_highlights, apply_phrase_highlights
 from app.manifest import load_manifest, save_manifest
 from app.models import ImageBlock, ManifestRecord, TextBlock
 from app.pdf_processor import PdfProcessor
@@ -91,6 +92,7 @@ def run_build_site(
 
     changed = 0
     translator: Translator | None = None
+    highlighter = None
     for pdf_path in pdf_files:
         source_key = ensure_relative_posix(pdf_path, settings.root_dir)
         sha256 = sha256_file(pdf_path)
@@ -123,6 +125,10 @@ def run_build_site(
                             translator,
                             skip_translation=skip_translation,
                         )
+                if settings.highlight_enabled and page.page_kind == "content":
+                    if highlighter is None and settings.summary_enabled and not skip_translation:
+                        highlighter = build_highlighter(settings)
+                    apply_page_highlights(page, highlighter)
             if settings.summary_enabled and not skip_translation:
                 summary_text = build_summary_source(document)
                 if summary_text.strip():
@@ -196,6 +202,14 @@ def build_summarizer(settings: Settings) -> OpenAICompatibleSummarizer:
     )
 
 
+def build_highlighter(settings: Settings) -> OpenAICompatibleHighlighter:
+    return OpenAICompatibleHighlighter(
+        api_key=settings.summary_api_key,
+        base_url=settings.summary_base_url,
+        model=settings.summary_model,
+    )
+
+
 def build_summary_source(document) -> str:
     parts: list[str] = []
     for page in document.pages:
@@ -205,6 +219,39 @@ def build_summary_source(document) -> str:
             if isinstance(item, TextBlock):
                 parts.append(item.translated_text or item.text)
     return "\n\n".join(parts)
+
+
+def apply_page_highlights(page, highlighter: OpenAICompatibleHighlighter | None) -> None:
+    text_blocks = [item for item in page.items if isinstance(item, TextBlock)]
+    chinese_page_text = "\n".join(block.translated_text for block in text_blocks if block.translated_text.strip())
+    phrases: list[str] = []
+    if highlighter is not None and chinese_page_text.strip():
+        try:
+            phrases = highlighter.pick_highlights(chinese_page_text)
+        except Exception:
+            phrases = []
+    for item in text_blocks:
+        highlighted = apply_phrase_highlights(item.translated_text or "翻译缺失", phrases)
+        if should_skip_numeric_highlight(item.translated_text):
+            item.highlighted_translated_text = highlighted
+        else:
+            item.highlighted_translated_text = apply_numeric_highlights(highlighted)
+
+
+def looks_like_contact_block(text: str) -> bool:
+    stripped = text.strip()
+    return "@" in stripped or "电话" in stripped or stripped.count("+") >= 1
+
+
+def should_skip_numeric_highlight(text: str) -> bool:
+    stripped = text.strip()
+    if not stripped:
+        return True
+    if looks_like_contact_block(stripped):
+        return True
+    if len(stripped) <= 20 and any(token in stripped for token in ("经济学", "中国", "广州", "香港")):
+        return True
+    return stripped.endswith("日") and stripped.count("年") == 1 and stripped.count("月") == 1
 
 
 def write_index(settings: Settings, manifest: dict[str, ManifestRecord]) -> None:

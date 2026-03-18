@@ -18,7 +18,7 @@ def test_render_report_markdown(tmp_path: Path) -> None:
             PageContent(
                 page_number=1,
                 items=[
-                    TextBlock(order=0, page_number=1, text="Original text", translated_text="译文"),
+                    TextBlock(order=0, page_number=1, text="Original text", translated_text="译文", highlighted_translated_text="<mark class=\"rrc-highlight-insight\">译文</mark>"),
                     ImageBlock(order=1, page_number=1, image_path=image_path, caption="图片"),
                 ],
             )
@@ -30,7 +30,7 @@ def test_render_report_markdown(tmp_path: Path) -> None:
     assert "# 测试研报" in markdown
     assert "## AI 总结" in markdown
     assert "Original text" in markdown
-    assert "译文" in markdown
+    assert "rrc-highlight-insight" in markdown
     assert "### 中文" in markdown
     assert "### 英文" in markdown
     assert "### 段落" not in markdown

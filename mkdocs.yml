@@ -5,6 +5,8 @@ docs_dir: output/site_src/docs
 site_dir: output/site
 theme:
   name: mkdocs
+extra_css:
+  - styles/highlight.css
 markdown_extensions:
   - tables
   - toc:

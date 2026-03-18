@@ -36,7 +36,7 @@ def render_bilingual_page(page, docs_dir: Path) -> list[str]:
     for item in page.items:
         if isinstance(item, TextBlock):
             english_blocks.append(item.text)
-            chinese_blocks.append(item.translated_text or "翻译缺失")
+            chinese_blocks.append(item.highlighted_translated_text or item.translated_text or "翻译缺失")
         elif isinstance(item, ImageBlock):
             images.append(item)
 
