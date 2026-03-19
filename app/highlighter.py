@@ -4,8 +4,7 @@ import json
 import re
 import textwrap
 
-import requests
-
+from app.llm_client import LLMClient, LLMError
 
 HIGHLIGHT_SYSTEM_PROMPT = textwrap.dedent(
     """
@@ -19,47 +18,22 @@ HIGHLIGHT_SYSTEM_PROMPT = textwrap.dedent(
     """
 ).strip()
 
-
-class HighlightError(RuntimeError):
-    """高亮请求失败时抛出的统一异常。"""
+HighlightError = LLMError
 
 
 class OpenAICompatibleHighlighter:
-    def __init__(self, api_key: str, base_url: str, model: str, timeout: int = 120) -> None:
-        if not api_key or not base_url or not model:
-            raise ValueError("高亮模型配置不完整。")
-        self.api_key = api_key
-        self.base_url = base_url.rstrip("/")
-        self.model = model
-        self.timeout = timeout
+    def __init__(self, client: LLMClient) -> None:
+        self._client = client
 
     def pick_highlights(self, text: str) -> list[str]:
         stripped = text.strip()
         if not stripped:
             return []
-        response = requests.post(
-            f"{self.base_url}/chat/completions",
-            headers={
-                "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json",
-            },
-            json={
-                "model": self.model,
-                "temperature": 0.1,
-                "messages": [
-                    {"role": "system", "content": HIGHLIGHT_SYSTEM_PROMPT},
-                    {"role": "user", "content": stripped[:12000]},
-                ],
-            },
-            timeout=self.timeout,
+        content = self._client.chat(
+            HIGHLIGHT_SYSTEM_PROMPT,
+            stripped[:12000],
+            temperature=0.1,
         )
-        if not response.ok:
-            raise HighlightError(f"高亮请求失败（HTTP {response.status_code}）：{response.text}")
-        payload = response.json()
-        try:
-            content = payload["choices"][0]["message"]["content"].strip()
-        except (KeyError, IndexError, TypeError) as error:
-            raise HighlightError(f"高亮接口返回格式异常：{payload}") from error
         return parse_highlight_candidates(content)
 
 

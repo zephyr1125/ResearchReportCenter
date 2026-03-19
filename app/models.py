@@ -1,7 +1,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from enum import Enum
 from pathlib import Path
+
+
+class PageKind(Enum):
+    CONTENT = "content"
+    APPENDIX = "appendix"
+    REPORT_LIST = "report_list"
 
 
 @dataclass
@@ -25,7 +32,7 @@ class ImageBlock:
 class PageContent:
     page_number: int
     items: list[TextBlock | ImageBlock] = field(default_factory=list)
-    page_kind: str = "content"
+    page_kind: PageKind = PageKind.CONTENT
 
 
 @dataclass

@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+import re
 from datetime import datetime
 from pathlib import Path
 
-from app.models import DocumentContent, ImageBlock, ManifestRecord, TextBlock
+from app.models import DocumentContent, ImageBlock, ManifestRecord, PageKind, TextBlock
 
 
 def render_report_markdown(document: DocumentContent, docs_dir: Path) -> str:
@@ -19,14 +20,24 @@ def render_report_markdown(document: DocumentContent, docs_dir: Path) -> str:
 
     for page in document.pages:
         lines.extend([f"## 第 {page.page_number} 页", ""])
-        if page.page_kind == "report_list":
+        if page.page_kind == PageKind.REPORT_LIST:
             lines.extend(render_report_list_page(page, docs_dir))
             continue
-        if page.page_kind == "appendix":
+        if page.page_kind == PageKind.APPENDIX:
             lines.extend(render_appendix_page(page, docs_dir))
             continue
         lines.extend(render_bilingual_page(page, docs_dir))
     return "\n".join(lines).strip() + "\n"
+
+
+def _image_markdown(image: ImageBlock, docs_dir: Path) -> list[str]:
+    relative_path = Path("..") / image.image_path.relative_to(docs_dir)
+    return [
+        f"![{image.caption}]({relative_path.as_posix()})",
+        "",
+        f"*{image.caption}*",
+        "",
+    ]
 
 
 def render_bilingual_page(page, docs_dir: Path) -> list[str]:
@@ -52,15 +63,7 @@ def render_bilingual_page(page, docs_dir: Path) -> list[str]:
     if images:
         lines.extend(["### 原页图表", ""])
         for image in images:
-            relative_path = Path("..") / image.image_path.relative_to(docs_dir)
-            lines.extend(
-                [
-                    f"![{image.caption}]({relative_path.as_posix()})",
-                    "",
-                    f"*{image.caption}*",
-                    "",
-                ]
-            )
+            lines.extend(_image_markdown(image, docs_dir))
     return lines
 
 
@@ -80,26 +83,20 @@ def render_report_list_page(page, docs_dir: Path) -> list[str]:
                 entries.append((date_text, normalize_translated_report_title(translated or english_title), english_title))
         elif isinstance(item, ImageBlock):
             if entries:
-                lines.extend(["| 日期 | 中文标题 | 原文标题 |", "| --- | --- | --- |"])
-                for date_text, chinese_title, english_title in entries:
-                    lines.append(f"| {date_text} | {chinese_title} | {english_title} |")
-                lines.extend(["", "### 原页预览", ""])
-                entries.clear()
-            relative_path = Path("..") / item.image_path.relative_to(docs_dir)
-            lines.extend(
-                [
-                    f"![{item.caption}]({relative_path.as_posix()})",
-                    "",
-                    f"*{item.caption}*",
-                    "",
-                ]
-            )
+                _flush_report_entries(lines, entries)
+                lines.extend(["### 原页预览", ""])
+            lines.extend(_image_markdown(item, docs_dir))
     if entries:
-        lines.extend(["| 日期 | 中文标题 | 原文标题 |", "| --- | --- | --- |"])
-        for date_text, chinese_title, english_title in entries:
-            lines.append(f"| {date_text} | {chinese_title} | {english_title} |")
-        lines.append("")
+        _flush_report_entries(lines, entries)
     return lines
+
+
+def _flush_report_entries(lines: list[str], entries: list[tuple[str, str, str]]) -> None:
+    lines.extend(["| 日期 | 中文标题 | 原文标题 |", "| --- | --- | --- |"])
+    for date_text, chinese_title, english_title in entries:
+        lines.append(f"| {date_text} | {chinese_title} | {english_title} |")
+    lines.append("")
+    entries.clear()
 
 
 def render_appendix_page(page, docs_dir: Path) -> list[str]:
@@ -108,22 +105,12 @@ def render_appendix_page(page, docs_dir: Path) -> list[str]:
         if isinstance(item, TextBlock):
             lines.extend([item.text, "", "---", ""])
         elif isinstance(item, ImageBlock):
-            relative_path = Path("..") / item.image_path.relative_to(docs_dir)
-            lines.extend(
-                [
-                    f"![{item.caption}]({relative_path.as_posix()})",
-                    "",
-                    f"*{item.caption}*",
-                    "",
-                ]
-            )
+            lines.extend(_image_markdown(item, docs_dir))
     return lines
 
 
 def parse_report_list_entry(text: str) -> tuple[str, str] | None:
     compact = " ".join(text.split())
-    import re
-
     match = re.match(
         r"^(?P<title>.+),\s+(?P<date>\d{1,2}\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4})$",
         compact,
@@ -136,8 +123,6 @@ def parse_report_list_entry(text: str) -> tuple[str, str] | None:
 
 def normalize_translated_report_title(text: str) -> str:
     compact = " ".join(text.split()).strip().strip("，,")
-    import re
-
     compact = re.sub(r"^\d{4}年\d{1,2}月\d{1,2}日[，,\s]*", "", compact)
     compact = re.sub(r"^\d{1,2}月\d{1,2}日[，,\s]*", "", compact)
     compact = re.sub(r"[，,]?\s*\d{4}年\d{1,2}月\d{1,2}日$", "", compact)

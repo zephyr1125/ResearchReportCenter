@@ -8,3 +8,5 @@ input/*.pdf
 output/site/
 output/logs/
 output/_tmp*/
+.filelist
+.claude/settings.local.json

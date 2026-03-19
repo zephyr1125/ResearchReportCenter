@@ -5,7 +5,7 @@ from pathlib import Path
 
 import fitz
 
-from app.models import DocumentContent, ImageBlock, PageContent, TextBlock
+from app.models import DocumentContent, ImageBlock, PageContent, PageKind, TextBlock
 
 
 class PdfProcessor:
@@ -58,7 +58,7 @@ class PdfProcessor:
                 item_order += 1
 
         page_content.page_kind = self._detect_page_kind(page_content.items)
-        if page_content.page_kind != "appendix":
+        if page_content.page_kind != PageKind.APPENDIX:
             page_content.items = self._filter_page_items(page_content.items)
         for index, item in enumerate(page_content.items):
             item.order = index
@@ -107,18 +107,18 @@ class PdfProcessor:
         return filtered
 
     @staticmethod
-    def _detect_page_kind(items: list[TextBlock | ImageBlock]) -> str:
+    def _detect_page_kind(items: list[TextBlock | ImageBlock]) -> PageKind:
         text_blocks = [item for item in items if isinstance(item, TextBlock)]
         if not text_blocks:
-            return "content"
+            return PageKind.CONTENT
         texts = [block.text.strip() for block in text_blocks if block.text.strip()]
         if PdfProcessor._is_disclaimer_page(texts):
-            return "appendix"
+            return PageKind.APPENDIX
         if any("Links to recent reports in the China Macro Tracker series" in text for text in texts):
             dated_titles = sum(1 for text in texts if PdfProcessor._looks_like_report_list_entry(text))
             if dated_titles >= 8:
-                return "report_list"
-        return "content"
+                return PageKind.REPORT_LIST
+        return PageKind.CONTENT
 
     @staticmethod
     def _is_disclaimer_page(texts: list[str]) -> bool:

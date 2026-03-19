@@ -3,13 +3,15 @@ from __future__ import annotations
 import argparse
 import logging
 import shutil
+import warnings
 from datetime import datetime
 from pathlib import Path
 
 from app.config import Settings
 from app.highlighter import OpenAICompatibleHighlighter, apply_numeric_highlights, apply_phrase_highlights
+from app.llm_client import LLMClient, LLMError
 from app.manifest import load_manifest, save_manifest
-from app.models import ImageBlock, ManifestRecord, TextBlock
+from app.models import ImageBlock, ManifestRecord, PageKind, TextBlock
 from app.pdf_processor import PdfProcessor
 from app.summarizer import OpenAICompatibleSummarizer, SummaryError
 from app.site_builder import normalize_translated_report_title, render_index_markdown, render_report_markdown
@@ -87,12 +89,10 @@ def run_build_site(
         save_manifest(settings.manifest_path, manifest)
         return 0
 
-    settings.reports_dir.mkdir(parents=True, exist_ok=True)
-    settings.assets_dir.mkdir(parents=True, exist_ok=True)
-
     changed = 0
     translator: Translator | None = None
-    highlighter = None
+    summarizer: OpenAICompatibleSummarizer | None = None
+    highlighter: OpenAICompatibleHighlighter | None = None
     for pdf_path in pdf_files:
         source_key = ensure_relative_posix(pdf_path, settings.root_dir)
         sha256 = sha256_file(pdf_path)
@@ -129,12 +129,12 @@ def run_build_site(
                     "处理第 %s/%s 页：类型=%s，文本块=%s",
                     page_index,
                     total_pages,
-                    page.page_kind,
+                    page.page_kind.value,
                     len(text_blocks),
                 )
                 translated_blocks = 0
                 for item in text_blocks:
-                    if page.page_kind == "appendix":
+                    if page.page_kind == PageKind.APPENDIX:
                         item.translated_text = ""
                         continue
                     item.translated_text = build_translated_text(
@@ -150,7 +150,7 @@ def run_build_site(
                             translated_blocks,
                             len(text_blocks),
                         )
-                if settings.highlight_enabled and page.page_kind == "content":
+                if settings.highlight_enabled and page.page_kind == PageKind.CONTENT:
                     if highlighter is None and settings.summary_enabled and not skip_translation:
                         logger.info("初始化高亮模型")
                         highlighter = build_highlighter(settings)
@@ -162,7 +162,9 @@ def run_build_site(
                 if summary_text.strip():
                     try:
                         logger.info("开始生成 AI 总结")
-                        document.ai_summary = build_summarizer(settings).summarize(summary_text)
+                        if summarizer is None:
+                            summarizer = build_summarizer(settings)
+                        document.ai_summary = summarizer.summarize(summary_text)
                         if settings.highlight_enabled:
                             if highlighter is None:
                                 logger.info("初始化高亮模型")
@@ -229,13 +231,22 @@ def build_document_title(title: str, translator: Translator | None, skip_transla
     return normalize_translated_report_title(compact) or title
 
 
+def _build_llm_client(settings: Settings) -> LLMClient:
+    return LLMClient(
+        api_key=settings.summary_api_key,
+        base_url=settings.summary_base_url,
+        model=settings.summary_model,
+    )
+
+
 def build_translator(settings: Settings) -> Translator:
     if settings.translator_provider == "openai":
-        return OpenAICompatibleTranslator(
+        client = LLMClient(
             api_key=settings.llm_api_key,
             base_url=settings.llm_base_url,
             model=settings.llm_model,
         )
+        return OpenAICompatibleTranslator(client)
     if settings.translator_provider == "volcengine":
         return VolcengineTranslator(
             access_key=settings.volcengine_access_key,
@@ -247,25 +258,17 @@ def build_translator(settings: Settings) -> Translator:
 
 
 def build_summarizer(settings: Settings) -> OpenAICompatibleSummarizer:
-    return OpenAICompatibleSummarizer(
-        api_key=settings.summary_api_key,
-        base_url=settings.summary_base_url,
-        model=settings.summary_model,
-    )
+    return OpenAICompatibleSummarizer(_build_llm_client(settings))
 
 
 def build_highlighter(settings: Settings) -> OpenAICompatibleHighlighter:
-    return OpenAICompatibleHighlighter(
-        api_key=settings.summary_api_key,
-        base_url=settings.summary_base_url,
-        model=settings.summary_model,
-    )
+    return OpenAICompatibleHighlighter(_build_llm_client(settings))
 
 
 def build_summary_source(document) -> str:
     parts: list[str] = []
     for page in document.pages:
-        if page.page_kind in {"appendix", "report_list"}:
+        if page.page_kind in {PageKind.APPENDIX, PageKind.REPORT_LIST}:
             continue
         for item in page.items:
             if isinstance(item, TextBlock):
@@ -280,8 +283,9 @@ def apply_page_highlights(page, highlighter: OpenAICompatibleHighlighter | None)
     if highlighter is not None and chinese_page_text.strip():
         try:
             phrases = highlighter.pick_highlights(chinese_page_text)
-        except Exception:
-            phrases = []
+        except LLMError:
+            logger = logging.getLogger("research-report-center")
+            logger.warning("高亮短语提取失败，已跳过。")
     for item in text_blocks:
         highlighted = apply_phrase_highlights(item.translated_text or "翻译缺失", phrases)
         if should_skip_numeric_highlight(item.translated_text):
@@ -298,8 +302,9 @@ def apply_summary_highlights(summary_text: str, highlighter: OpenAICompatibleHig
     if highlighter is not None:
         try:
             phrases = highlighter.pick_highlights(stripped)
-        except Exception:
-            phrases = []
+        except LLMError:
+            logger = logging.getLogger("research-report-center")
+            logger.warning("总结高亮短语提取失败，已跳过。")
     highlighted = apply_phrase_highlights(stripped, phrases)
     return apply_numeric_highlights(highlighted)
 

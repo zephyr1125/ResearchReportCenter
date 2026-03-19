@@ -1,16 +1,16 @@
 from __future__ import annotations
 
+import json
 import textwrap
-import time
 from collections import OrderedDict
 from typing import Any
 
-import requests
 from volcengine.ApiInfo import ApiInfo
 from volcengine.Credentials import Credentials
 from volcengine.ServiceInfo import ServiceInfo
 from volcengine.base.Service import Service
 
+from app.llm_client import LLMClient, LLMError
 
 SYSTEM_PROMPT = textwrap.dedent(
     """
@@ -23,81 +23,23 @@ SYSTEM_PROMPT = textwrap.dedent(
     """
 ).strip()
 
+TranslationError = LLMError
+
 
 class Translator:
     def translate(self, text: str) -> str:
         raise NotImplementedError
 
 
-class TranslationError(RuntimeError):
-    """翻译请求失败时抛出的统一异常。"""
-
-
 class OpenAICompatibleTranslator(Translator):
-    def __init__(
-        self,
-        api_key: str,
-        base_url: str,
-        model: str,
-        timeout: int = 120,
-        max_retries: int = 3,
-        retry_delay_seconds: int = 5,
-    ) -> None:
-        if not api_key:
-            raise ValueError("缺少环境变量 LLM_API_KEY，无法执行翻译。")
-        self.api_key = api_key
-        self.base_url = base_url.rstrip("/")
-        self.model = model
-        self.timeout = timeout
-        self.max_retries = max_retries
-        self.retry_delay_seconds = retry_delay_seconds
+    def __init__(self, client: LLMClient) -> None:
+        self._client = client
 
     def translate(self, text: str) -> str:
         stripped = text.strip()
         if not stripped:
             return ""
-
-        last_error: Exception | None = None
-        for attempt in range(1, self.max_retries + 1):
-            response = requests.post(
-                f"{self.base_url}/chat/completions",
-                headers={
-                    "Authorization": f"Bearer {self.api_key}",
-                    "Content-Type": "application/json",
-                },
-                json={
-                    "model": self.model,
-                    "temperature": 0,
-                    "messages": [
-                        {"role": "system", "content": SYSTEM_PROMPT},
-                        {"role": "user", "content": stripped},
-                    ],
-                },
-                timeout=self.timeout,
-            )
-            if response.ok:
-                payload = response.json()
-                try:
-                    return payload["choices"][0]["message"]["content"].strip()
-                except (KeyError, IndexError, TypeError) as error:
-                    raise TranslationError(f"翻译接口返回格式异常：{payload}") from error
-
-            message = _build_error_message(response)
-            if response.status_code == 429 and attempt < self.max_retries:
-                last_error = TranslationError(message)
-                time.sleep(self.retry_delay_seconds * attempt)
-                continue
-            raise TranslationError(message)
-
-        raise TranslationError(str(last_error) if last_error else "翻译失败，原因未知。")
-
-
-def _build_error_message(response: requests.Response) -> str:
-    try:
-        payload = response.json()
-    except ValueError:
-        payload = response.text
-    return f"翻译请求失败（HTTP {response.status_code}）：{payload}"
+        return self._client.chat(SYSTEM_PROMPT, stripped, temperature=0)
 
 
 class VolcengineTranslator(Translator):
@@ -142,43 +84,31 @@ class VolcengineTranslator(Translator):
         return "\n".join(part for part in translated_parts if part.strip()).strip()
 
     def _translate_batch(self, texts: list[str]) -> list[str]:
-        body = {
+        body: dict[str, Any] = {
             "TargetLanguage": self.target_language,
             "TextList": texts,
         }
         try:
-            raw = self.service.json("TranslateText", {}, json_dumps(body))
+            raw = self.service.json("TranslateText", {}, json.dumps(body, ensure_ascii=False))
         except Exception as error:  # noqa: BLE001
-            raise TranslationError(f"火山引擎翻译请求失败：{error}") from error
+            raise LLMError(f"火山引擎翻译请求失败：{error}") from error
 
-        payload = json_loads(raw)
+        payload = json.loads(raw)
         metadata = payload.get("ResponseMetadata", {})
         error_info = metadata.get("Error")
         if error_info:
-            raise TranslationError(f"火山引擎翻译返回错误：{error_info}")
+            raise LLMError(f"火山引擎翻译返回错误：{error_info}")
 
         translations = payload.get("TranslationList", [])
         results: list[str] = []
         for item in translations:
             translation = item.get("Translation", "").strip()
             if not translation:
-                raise TranslationError(f"火山引擎翻译返回格式异常：{payload}")
+                raise LLMError(f"火山引擎翻译返回格式异常：{payload}")
             results.append(translation)
         if len(results) != len(texts):
-            raise TranslationError(f"火山引擎翻译返回数量异常：{payload}")
+            raise LLMError(f"火山引擎翻译返回数量异常：{payload}")
         return results
-
-
-def json_dumps(payload: dict[str, Any]) -> str:
-    import json
-
-    return json.dumps(payload, ensure_ascii=False)
-
-
-def json_loads(payload: str) -> dict[str, Any]:
-    import json
-
-    return json.loads(payload)
 
 
 def _split_text_for_volcengine(text: str, limit: int) -> list[str]:

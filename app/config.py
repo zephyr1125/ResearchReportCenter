@@ -7,6 +7,13 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 
+def _parse_env_bool(key: str, *, default: bool) -> bool:
+    value = os.getenv(key)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
 @dataclass(frozen=True)
 class Settings:
     root_dir: Path
@@ -55,11 +62,11 @@ class Settings:
             volcengine_secret_key=os.getenv("VOLCENGINE_SECRET_KEY", "").strip(),
             volcengine_region=os.getenv("VOLCENGINE_REGION", "cn-north-1").strip(),
             target_language=os.getenv("TARGET_LANGUAGE", "zh").strip(),
-            summary_enabled=os.getenv("SUMMARY_ENABLED", "false").strip().lower() in {"1", "true", "yes", "on"},
+            summary_enabled=_parse_env_bool("SUMMARY_ENABLED", default=False),
             summary_api_key=os.getenv("SUMMARY_API_KEY", "").strip(),
             summary_base_url=os.getenv("SUMMARY_BASE_URL", "").strip(),
             summary_model=os.getenv("SUMMARY_MODEL", "").strip(),
-            highlight_enabled=os.getenv("HIGHLIGHT_ENABLED", "true").strip().lower() in {"1", "true", "yes", "on"},
+            highlight_enabled=_parse_env_bool("HIGHLIGHT_ENABLED", default=True),
         )
 
     def ensure_directories(self) -> None:

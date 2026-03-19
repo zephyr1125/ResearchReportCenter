@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from app.models import DocumentContent, ImageBlock, ManifestRecord, PageContent, TextBlock
+from app.models import DocumentContent, ImageBlock, ManifestRecord, PageContent, PageKind, TextBlock
 from app.site_builder import normalize_translated_report_title, parse_report_list_entry, render_index_markdown, render_report_markdown
 
 
@@ -71,7 +71,7 @@ def test_render_report_list_page(tmp_path: Path) -> None:
         pages=[
             PageContent(
                 page_number=8,
-                page_kind="report_list",
+                page_kind=PageKind.REPORT_LIST,
                 items=[
                     TextBlock(order=0, page_number=8, text="Links to recent reports in the China Macro Tracker series", translated_text="中国宏观跟踪系列近期报告链接"),
                     TextBlock(order=1, page_number=8, text="A balanced approach, 12 November 2025", translated_text="平衡的方法，2025年11月12日"),
@@ -106,7 +106,7 @@ def test_render_appendix_page_keeps_original_only(tmp_path: Path) -> None:
         pages=[
             PageContent(
                 page_number=10,
-                page_kind="appendix",
+                page_kind=PageKind.APPENDIX,
                 items=[
                     TextBlock(order=0, page_number=10, text="Disclosures & Disclaimer", translated_text="披露和免责声明"),
                 ],
