@@ -11,6 +11,16 @@
       "error": null
     },
     {
+      "source_path": "input/China Equity Strategy .pdf",
+      "source_name": "China Equity Strategy .pdf",
+      "sha256": "845671ba38c0c46e3de7b9b7a09c9164ca218ce04611de18299c1e1a9f046789",
+      "article_path": "reports/china-equity-strategy-a2f35963.md",
+      "status": "success",
+      "processed_at": "2026-03-19T11:01:40",
+      "translated_title": "全球投资者可行的多元化选择",
+      "error": null
+    },
+    {
       "source_path": "input/China Macro Tracker NPC press conferences, global oil volatility.pdf",
       "source_name": "China Macro Tracker NPC press conferences, global oil volatility.pdf",
       "sha256": "4b762002fd5d5522af0fc975ac077e1505f37f2447812eab641f2fa6ad347957",
